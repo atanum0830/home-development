@@ -40,7 +40,7 @@
 
 <div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'invoicAmt', 'error')} required">
 	<label for="invoicAmt">
-		<g:message code="invoice.invoicAmt.label" default="Invoic Amt" />
+		<g:message code="invoice.invoicAmt.label" default="Invoice Amt" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="invoicAmt" value="${fieldValue(bean: invoiceInstance, field: 'invoicAmt')}" required=""/>
@@ -79,7 +79,17 @@
 		<g:message code="invoice.student.label" default="Student" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="student" name="student.id" from="${com.academy.maars.school.Student.list()}" optionKey="id" required="" value="${invoiceInstance?.student?.id}" class="many-to-one"/>
+
+	<g:if test="${invoiceInstance.student}">
+		<g:link controller="student" action="show" id="${invoiceInstance?.student?.id}">
+				${invoiceInstance?.student?.encodeAsHTML()}</g:link>
+		<g:field id="student" type="hidden" name="student.id" value="${invoiceInstance?.student?.id}"/>
+	</g:if>
+	<g:else>
+		<g:select id="student" name="student.id" from="${com.academy.maars.school.Student.list()}" optionKey="id" required="" value="${invoiceInstance?.student?.id}" class="many-to-one"/>
+	</g:else>
 
 </div>
+
+
 

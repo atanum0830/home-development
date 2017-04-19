@@ -134,9 +134,12 @@ img {
 
 /* NAVIGATION MENU */
 
+/*
+	padding: 0.5em 0.75em;
+*/
 .nav {
 	background-color: #efefef;
-	padding: 0.5em 0.75em;
+	padding: 0.0em 0.0em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
 	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
 	        box-shadow: 0 0 3px 1px #aaaaaa;
@@ -220,7 +223,8 @@ fieldset,
 }
 
 .fieldcontain {
-	margin-top: 1em;
+	/* margin-top: 1em; */
+	margin-top: 0;
 }
 
 .fieldcontain label,
@@ -313,6 +317,7 @@ fieldset.embedded {
 	border: 1px solid #CCCCCC;
 	margin-left: 0;
 	margin-right: 0;
+	padding: 0;
 	padding-left: 0;
 	padding-right: 0;
 	   -moz-box-shadow: none;
@@ -417,11 +422,16 @@ tr>td:last-child, tr>th:last-child {
 	padding-right: 1.25em;
 }
 
-td, th {
-	line-height: 1.5em;
+/*
 	padding: 0.5em 0.6em;
+	line-height: 1.5em;
+
+*/
+td, th {
+	border: 1px solid #999;
 	text-align: left;
 	vertical-align: top;
+	
 }
 
 th {
@@ -520,11 +530,14 @@ th:hover, tr:hover {
 }
 
 /* ACTION BUTTONS */
-
+/*
+padding: 0.3em;
+*/
 .buttons {
 	background-color: #efefef;
 	overflow: hidden;
-	padding: 0.3em;
+	padding: 0;
+	
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
 	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
 	        box-shadow: 0 0 3px 1px #aaaaaa;
@@ -532,16 +545,18 @@ th:hover, tr:hover {
 	border: none;
 }
 
-.buttons input,
+/*
+	padding: 0.25em 0.7em;
+	margin: 0 0.25em 0;
+
+*/.buttons input,
 .buttons a {
 	background-color: transparent;
 	border: 0;
 	color: #666666;
 	cursor: pointer;
 	display: inline-block;
-	margin: 0 0.25em 0;
 	overflow: visible;
-	padding: 0.25em 0.7em;
 	text-decoration: none;
 
 	   -moz-border-radius: 0.3em;

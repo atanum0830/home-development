@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="firstName-label" class="property-label"><g:message code="parent.firstName.label" default="First Name" /></span>
 					
-						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${parentInstance}" field="firstName"/></span>
+					<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${parentInstance}" field="firstName"/></span>
 					
 				</li>
 				</g:if>
@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="lastName-label" class="property-label"><g:message code="parent.lastName.label" default="Last Name" /></span>
 					
-						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${parentInstance}" field="lastName"/></span>
+					<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${parentInstance}" field="lastName"/></span>
 					
 				</li>
 				</g:if>
@@ -68,17 +68,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${parentInstance?.children}">
-				<li class="fieldcontain">
-					<span id="children-label" class="property-label"><g:message code="parent.children.label" default="Children" /></span>
-					
-						<g:each in="${parentInstance.children}" var="c">
-						<span class="property-value" aria-labelledby="children-label"><g:link controller="student" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${parentInstance?.city}">
 				<li class="fieldcontain">
 					<span id="city-label" class="property-label"><g:message code="parent.city.label" default="City" /></span>
@@ -101,7 +90,13 @@
 				<li class="fieldcontain">
 					<span id="phoneNo-label" class="property-label"><g:message code="parent.phoneNo.label" default="Phone No" /></span>
 					
-						<span class="property-value" aria-labelledby="phoneNo-label"><g:fieldValue bean="${parentInstance}" field="phoneNo"/></span>
+					<span class="property-value" aria-labelledby="phoneNo-label">
+						<g:formatNumber number="${parentInstance?.phoneNo}" format="######" />
+						<!--
+							<g:fieldValue bean="${parentInstance}" field="phoneNo"/>
+						-->
+						
+					</span>
 					
 				</li>
 				</g:if>
@@ -124,6 +119,25 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${parentInstance?.children}">
+				<li class="fieldcontain">
+					<span id="children-label" class="property-label"><g:message code="parent.children.label" default="Children" /></span>
+					
+					<span><table><tbody>
+						<g:each in="${parentInstance.children}"  status="count" var="student">
+							<tr class="${(count % 2) == 0 ? 'even' : 'odd'}">
+								<td><g:link controller="student" action="show" id="${student.id}">
+									${student?.id.encodeAsHTML()}
+								</g:link></td>
+								<td>${student?.firstName}</td>
+								<td>${student?.lastName}</td>
+								<td>${student?.gender}</td>
+							</tr>
+						</g:each>
+					</tbody></table></span>
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:parentInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
@@ -133,4 +147,14 @@
 			</g:form>
 		</div>
 	</body>
+
+<!--
+<g:formatNumber number="${student?.id}" format="0###"/>
+
+					<g:each in="${parentInstance.children}" var="c">
+						<span class="property-value" aria-labelledby="children-label"><g:link controller="student" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+					</g:each>
+					
+
+-->
 </html>

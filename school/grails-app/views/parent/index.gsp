@@ -30,11 +30,15 @@
 					
 						<g:sortableColumn property="relation" title="${message(code: 'parent.relation.label', default: 'Relation')}" />
 					
-						<g:sortableColumn property="addressLine2" title="${message(code: 'parent.addressLine2.label', default: 'Address Line2')}" />
+						<g:sortableColumn property="phone" title="${message(code: 'parent.phone.label', default: 'Phone')}" />
+					
+						<g:sortableColumn property="email" title="${message(code: 'parent.email.label', default: 'Email')}" />
 					
 						<g:sortableColumn property="addressLine1" title="${message(code: 'parent.addressLine1.label', default: 'Address Line1')}" />
 					
 						<g:sortableColumn property="city" title="${message(code: 'parent.city.label', default: 'City')}" />
+					
+						<g:sortableColumn property="zip" title="${message(code: 'parent.zip.label', default: 'Zip')}" />
 					
 					</tr>
 				</thead>
@@ -48,11 +52,15 @@
 					
 						<td>${fieldValue(bean: parentInstance, field: "relation")}</td>
 					
-						<td>${fieldValue(bean: parentInstance, field: "addressLine2")}</td>
+						<td><g:formatNumber number="${parentInstance?.phoneNo}" format="######"/></td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "email")}</td>
 					
 						<td>${fieldValue(bean: parentInstance, field: "addressLine1")}</td>
 					
 						<td>${fieldValue(bean: parentInstance, field: "city")}</td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "zip")}</td>
 					
 					</tr>
 				</g:each>
