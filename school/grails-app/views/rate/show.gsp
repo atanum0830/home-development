@@ -23,6 +23,24 @@
 			</g:if>
 			<ol class="property-list rate">
 			
+				<g:if test="${rateInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="rate.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${rateInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${rateInstance?.rateCode}">
+				<li class="fieldcontain">
+					<span id="rateCode-label" class="property-label"><g:message code="rate.rateCode.label" default="Rate Code" /></span>
+					
+						<span class="property-value" aria-labelledby="rateCode-label"><g:fieldValue bean="${rateInstance}" field="rateCode"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:rateInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

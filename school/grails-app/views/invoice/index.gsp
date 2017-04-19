@@ -24,11 +24,35 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="invoiceDate" title="${message(code: 'invoice.invoiceDate.label', default: 'Invoice Date')}" />
+					
+						<g:sortableColumn property="paymentDate" title="${message(code: 'invoice.paymentDate.label', default: 'Payment Date')}" />
+					
+						<g:sortableColumn property="checkNo" title="${message(code: 'invoice.checkNo.label', default: 'Check No')}" />
+					
+						<g:sortableColumn property="checkAmt" title="${message(code: 'invoice.checkAmt.label', default: 'Check Amt')}" />
+					
+						<g:sortableColumn property="invoicAmt" title="${message(code: 'invoice.invoicAmt.label', default: 'Invoic Amt')}" />
+					
+						<g:sortableColumn property="isPaid" title="${message(code: 'invoice.isPaid.label', default: 'Is Paid')}" />
+					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${invoiceInstanceList}" status="i" var="invoiceInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link action="show" id="${invoiceInstance.id}">${fieldValue(bean: invoiceInstance, field: "invoiceDate")}</g:link></td>
+					
+						<td><g:formatDate date="${invoiceInstance.paymentDate}" /></td>
+					
+						<td>${fieldValue(bean: invoiceInstance, field: "checkNo")}</td>
+					
+						<td>${fieldValue(bean: invoiceInstance, field: "checkAmt")}</td>
+					
+						<td>${fieldValue(bean: invoiceInstance, field: "invoicAmt")}</td>
+					
+						<td><g:formatBoolean boolean="${invoiceInstance.isPaid}" /></td>
 					
 					</tr>
 				</g:each>

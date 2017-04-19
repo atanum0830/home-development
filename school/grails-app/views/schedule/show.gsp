@@ -23,6 +23,69 @@
 			</g:if>
 			<ol class="property-list schedule">
 			
+				<g:if test="${scheduleInstance?.classDate}">
+				<li class="fieldcontain">
+					<span id="classDate-label" class="property-label"><g:message code="schedule.classDate.label" default="Class Date" /></span>
+					
+						<span class="property-value" aria-labelledby="classDate-label"><g:formatDate date="${scheduleInstance?.classDate}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.duration}">
+				<li class="fieldcontain">
+					<span id="duration-label" class="property-label"><g:message code="schedule.duration.label" default="Duration" /></span>
+					
+						<span class="property-value" aria-labelledby="duration-label"><g:fieldValue bean="${scheduleInstance}" field="duration"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.fee}">
+				<li class="fieldcontain">
+					<span id="fee-label" class="property-label"><g:message code="schedule.fee.label" default="Fee" /></span>
+					
+						<span class="property-value" aria-labelledby="fee-label"><g:fieldValue bean="${scheduleInstance}" field="fee"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.invoice}">
+				<li class="fieldcontain">
+					<span id="invoice-label" class="property-label"><g:message code="schedule.invoice.label" default="Invoice" /></span>
+					
+						<span class="property-value" aria-labelledby="invoice-label"><g:link controller="invoice" action="show" id="${scheduleInstance?.invoice?.id}">${scheduleInstance?.invoice?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.rate}">
+				<li class="fieldcontain">
+					<span id="rate-label" class="property-label"><g:message code="schedule.rate.label" default="Rate" /></span>
+					
+						<span class="property-value" aria-labelledby="rate-label"><g:link controller="rate" action="show" id="${scheduleInstance?.rate?.id}">${scheduleInstance?.rate?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.student}">
+				<li class="fieldcontain">
+					<span id="student-label" class="property-label"><g:message code="schedule.student.label" default="Student" /></span>
+					
+						<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${scheduleInstance?.student?.id}">${scheduleInstance?.student?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${scheduleInstance?.subject}">
+				<li class="fieldcontain">
+					<span id="subject-label" class="property-label"><g:message code="schedule.subject.label" default="Subject" /></span>
+					
+						<span class="property-value" aria-labelledby="subject-label"><g:link controller="subject" action="show" id="${scheduleInstance?.subject?.id}">${scheduleInstance?.subject?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:scheduleInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

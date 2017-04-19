@@ -24,11 +24,35 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="firstName" title="${message(code: 'parent.firstName.label', default: 'First Name')}" />
+					
+						<g:sortableColumn property="lastName" title="${message(code: 'parent.lastName.label', default: 'Last Name')}" />
+					
+						<g:sortableColumn property="relation" title="${message(code: 'parent.relation.label', default: 'Relation')}" />
+					
+						<g:sortableColumn property="addressLine2" title="${message(code: 'parent.addressLine2.label', default: 'Address Line2')}" />
+					
+						<g:sortableColumn property="addressLine1" title="${message(code: 'parent.addressLine1.label', default: 'Address Line1')}" />
+					
+						<g:sortableColumn property="city" title="${message(code: 'parent.city.label', default: 'City')}" />
+					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${parentInstanceList}" status="i" var="parentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link action="show" id="${parentInstance.id}">${fieldValue(bean: parentInstance, field: "firstName")}</g:link></td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "lastName")}</td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "relation")}</td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "addressLine2")}</td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "addressLine1")}</td>
+					
+						<td>${fieldValue(bean: parentInstance, field: "city")}</td>
 					
 					</tr>
 				</g:each>

@@ -23,6 +23,24 @@
 			</g:if>
 			<ol class="property-list subject">
 			
+				<g:if test="${subjectInstance?.name}">
+				<li class="fieldcontain">
+					<span id="name-label" class="property-label"><g:message code="subject.name.label" default="Name" /></span>
+					
+						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${subjectInstance}" field="name"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${subjectInstance?.subjectCode}">
+				<li class="fieldcontain">
+					<span id="subjectCode-label" class="property-label"><g:message code="subject.subjectCode.label" default="Subject Code" /></span>
+					
+						<span class="property-value" aria-labelledby="subjectCode-label"><g:fieldValue bean="${subjectInstance}" field="subjectCode"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:subjectInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
