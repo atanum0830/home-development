@@ -123,18 +123,9 @@
 				<li class="fieldcontain">
 					<span id="children-label" class="property-label"><g:message code="parent.children.label" default="Children" /></span>
 					
-					<span><table><tbody>
-						<g:each in="${parentInstance.children}"  status="count" var="student">
-							<tr class="${(count % 2) == 0 ? 'even' : 'odd'}">
-								<td><g:link controller="student" action="show" id="${student.id}">
-									${student?.id.encodeAsHTML()}
-								</g:link></td>
-								<td>${student?.firstName}</td>
-								<td>${student?.lastName}</td>
-								<td>${student?.gender}</td>
-							</tr>
-						</g:each>
-					</tbody></table></span>
+					<span>
+						<g:render template="/student/studentTable" model="['students': parentInstance.children]"/>
+					</span>
 				</li>
 				</g:if>
 			
