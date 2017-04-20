@@ -97,11 +97,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${studentInstance?.kinderGarten}">
+				<g:if test="${studentInstance?.preKinder}">
 				<li class="fieldcontain">
 					<span id="kinderGarten-label" class="property-label"><g:message code="student.kinderGarten.label" default="Kinder Garten" /></span>
 					
-						<span class="property-value" aria-labelledby="kinderGarten-label"><g:formatBoolean boolean="${studentInstance?.kinderGarten}" /></span>
+						<span class="property-value" aria-labelledby="kinderGarten-label"><g:formatBoolean boolean="${studentInstance?.preKinder}" /></span>
 					
 				</li>
 				</g:if>

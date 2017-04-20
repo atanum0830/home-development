@@ -83,12 +83,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: studentInstance, field: 'kinderGarten', 'error')} ">
-	<label for="kinderGarten">
+<div class="fieldcontain ${hasErrors(bean: studentInstance, field: 'preKinder', 'error')} ">
+	<label for="preKinder">
 		<g:message code="student.kinderGarten.label" default="Kinder Garten" />
 		
 	</label>
-	<g:checkBox name="kinderGarten" value="${studentInstance?.kinderGarten}" />
+	<g:checkBox name="preKinder" value="${studentInstance?.preKinder}" />
 
 </div>
 

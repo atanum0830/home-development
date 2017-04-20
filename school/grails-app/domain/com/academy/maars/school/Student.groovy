@@ -8,12 +8,13 @@ package com.academy.maars.school
 class Student {
 	final static Date DEFAULT_DATE = findDefaultDate()
 
+	String legacyId
 	String firstName
 	String lastName
 	Date birthDate = DEFAULT_DATE;
 	//Date birthDate
 	String gender
-	Boolean kinderGarten
+	Boolean preKinder
 	String prevSchool
 	String feedback
 	Parent secondParent
@@ -23,6 +24,7 @@ class Student {
 	static belongsTo = [parent: Parent]
 
 	static constraints = {
+		legacyId blank:true, nullable:true
 		firstName blank:false
 		lastName blank:false
 		gender inList:['M','F']
