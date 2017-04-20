@@ -35,6 +35,7 @@ class SubjectController {
             return
         }
 
+        
         subjectInstance.save flush:true
 
         request.withFormat {
@@ -61,6 +62,8 @@ class SubjectController {
             respond subjectInstance.errors, view:'edit'
             return
         }
+
+        sendEmail();
 
         subjectInstance.save flush:true
 
@@ -101,4 +104,23 @@ class SubjectController {
             '*'{ render status: NOT_FOUND }
         }
     }
+/*
+    protected void sendEmail() {
+        sendMail {
+            to "atanum0830@gmail.com"
+            subject "This is a test mail"
+            body "Hello, This is a test mail, how are you?"
+        }
+    }
+*/
+    protected void sendEmail() {
+        sendMail {
+            to "calcchelsea@gmail.com"
+            subject "INVOICE"
+            html g.render(template:'/mail/invoiceTemplate', model:[schedules: Schedule.list()])
+
+        }
+    }
+
+
 }

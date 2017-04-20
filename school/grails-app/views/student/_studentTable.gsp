@@ -1,4 +1,4 @@
-<table>
+<table style="width:300px">
 <tbody>
 	<g:each in="${students}" status="count" var="student">
 		<tr class="${(count % 2) == 0 ? 'even' : 'odd'}">

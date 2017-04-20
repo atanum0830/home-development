@@ -101,7 +101,10 @@
 			<g:form url="[resource:invoiceInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${invoiceInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+
+					<g:link class="edit" action="email" resource="${invoiceInstance}">Email</g:link>
 				</fieldset>
 			</g:form>
 		</div>
