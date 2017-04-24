@@ -38,12 +38,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'invoicAmt', 'error')} required">
-	<label for="invoicAmt">
+<div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'invoiceAmt', 'error')} required">
+	<label for="invoiceAmt">
 		<g:message code="invoice.invoicAmt.label" default="Invoice Amt" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="invoicAmt" value="${fieldValue(bean: invoiceInstance, field: 'invoicAmt')}" required=""/>
+	<g:field name="invoiceAmt" value="${fieldValue(bean: invoiceInstance, field: 'invoiceAmt')}" required=""/>
 
 </div>
 

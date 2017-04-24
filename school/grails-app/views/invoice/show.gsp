@@ -59,11 +59,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${invoiceInstance?.invoicAmt}">
+				<g:if test="${invoiceInstance?.invoiceAmt}">
 				<li class="fieldcontain">
-					<span id="invoicAmt-label" class="property-label"><g:message code="invoice.invoicAmt.label" default="Invoic Amt" /></span>
+					<span id="invoiceAmt-label" class="property-label"><g:message code="invoice.invoicAmt.label" default="Invoice Amt" /></span>
 					
-						<span class="property-value" aria-labelledby="invoicAmt-label"><g:fieldValue bean="${invoiceInstance}" field="invoicAmt"/></span>
+						<span class="property-value" aria-labelledby="invoiceAmt-label"><g:fieldValue bean="${invoiceInstance}" field="invoiceAmt"/></span>
 					
 				</li>
 				</g:if>

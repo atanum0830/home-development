@@ -2,7 +2,7 @@ package com.academy.maars.school
 
 class Invoice {
 	Date invoiceDate
-	Float invoicAmt =0.0;
+	Float invoiceAmt =0.0;
 	Date paymentDate
 	Integer checkNo
 	Float checkAmt

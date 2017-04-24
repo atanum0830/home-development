@@ -32,7 +32,7 @@
 					
 						<g:sortableColumn property="checkAmt" title="${message(code: 'invoice.checkAmt.label', default: 'Check Amt')}" />
 					
-						<g:sortableColumn property="invoicAmt" title="${message(code: 'invoice.invoicAmt.label', default: 'Invoic Amt')}" />
+						<g:sortableColumn property="invoiceAmt" title="${message(code: 'invoice.invoicAmt.label', default: 'Invoice Amt')}" />
 					
 						<g:sortableColumn property="isPaid" title="${message(code: 'invoice.isPaid.label', default: 'Is Paid')}" />
 					
@@ -50,7 +50,7 @@
 					
 						<td>${fieldValue(bean: invoiceInstance, field: "checkAmt")}</td>
 					
-						<td>${fieldValue(bean: invoiceInstance, field: "invoicAmt")}</td>
+						<td>${fieldValue(bean: invoiceInstance, field: "invoiceAmt")}</td>
 					
 						<td><g:formatBoolean boolean="${invoiceInstance.isPaid}" /></td>
 					
