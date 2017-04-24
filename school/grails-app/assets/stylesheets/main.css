@@ -582,7 +582,7 @@ padding: 0.3em;
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save {
+.buttons .delete, .buttons .edit, .buttons .pdf, .buttons .email, .buttons .save {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -603,6 +603,14 @@ padding: 0.3em;
 
 .buttons .save {
 	background-image: url(../images/skin/database_save.png);
+}
+
+.buttons .email {
+	background-image: url(../images/skin/email.png);
+}
+
+.buttons .pdf {
+	background-image: url(../images/skin/pdf.png);
 }
 
 a.skip {
