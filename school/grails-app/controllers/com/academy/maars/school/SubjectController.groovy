@@ -19,6 +19,15 @@ class SubjectController {
         renderPdf(template: '/mail/test', model: [subjects: Subject.list(), rl:assetResourceLocator], filename: "whatSubject.pdf")
     }
 
+    def sendEmail(Subject subjectInstance) {
+        sendMail {
+            to "calcchelsea@gmail.com"
+            subject "INVOICE"
+            html g.render(template:'/mail/invoiceTemplate', model:[schedules: Schedule.list()])
+        }
+        respond subjectInstance
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Subject.list(params), model:[subjectInstanceCount: Subject.count()]
@@ -72,8 +81,6 @@ class SubjectController {
             return
         }
 
-        sendEmail();
-
         subjectInstance.save flush:true
 
         request.withFormat {
@@ -122,6 +129,7 @@ class SubjectController {
         }
     }
 */
+/*
     protected void sendEmail() {
         sendMail {
             to "calcchelsea@gmail.com"
@@ -129,7 +137,8 @@ class SubjectController {
             html g.render(template:'/mail/invoiceTemplate', model:[schedules: Schedule.list()])
 
         }
-    }
 
+    }
+*/
 
 }
