@@ -13,7 +13,7 @@
         .header {
             background-color: white;
             color: #00cc99;
-            height: 80px;
+            height: 240px;
         }
 
         .footer {
@@ -96,14 +96,10 @@
 
 <body>
     <div class="header">
-        <div style='width:100%;float:left;margin:0'>
-            <h1 class='heading-para1' style='text-align:center'>MAARS ACADEMY</h1>
-        </div>
+        <div style='width:100%;float:left;margin:0;padding:0;text-align:center'>
+            <rendering:inlinePng bytes="${rl?.findAssetForURI('maarslogo.png').byteArray}"/>
+         </div>
 
-<!--         <div style='width:20%;margin:0;float:right;text-align:right;padding-right:30px'>
-            
-        </div>
- -->
     </div>
 
     <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
@@ -256,7 +252,7 @@
         </tbody>
     </table>
 
-   <table style='width:30%;margin-top:10px'>
+   <table style='width:50%;margin-top:10px'>
         <thead>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
                 <td style='width:50%'>Remittance</td>
@@ -270,16 +266,16 @@
                 <td>23676529</td>
            </tr>
             <tr style='color:#00cc99;'>
-                <td>Date</td>
+                <td>Date Due</td>
                 <td style='background-color:#e0ebeb'>04-12-2017</td>
            </tr>
             <tr style='color:#00cc99;background-color:white'>
-                <td>Statement#</td>
-                <td>23676529</td>
+                <td>Amount Due</td>
+                <td></td>
            </tr>
             <tr style='color:#00cc99;'>
-                <td>Date</td>
-                <td style='background-color:#e0ebeb'>04-12-2017</td>
+                <td>Amount Enclosed</td>
+                <td style='background-color:#e0ebeb'></td>
            </tr>
          </tbody>
     </table>

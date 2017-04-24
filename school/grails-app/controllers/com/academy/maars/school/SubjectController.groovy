@@ -10,11 +10,13 @@ class SubjectController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def assetResourceLocator;
+
     def renderPdf(Subject subjectInstance) {
         response.contentType = 'application/pdf'
         response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
 
-        renderPdf(template: '/mail/test', model: [subjects: Subject.list()], filename: "whatSubject.pdf")
+        renderPdf(template: '/mail/test', model: [subjects: Subject.list(), rl:assetResourceLocator], filename: "whatSubject.pdf")
     }
 
     def index(Integer max) {
