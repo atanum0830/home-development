@@ -7,7 +7,7 @@
         }
 
         @page {
-        size: 300mm 400mm;
+        size: 210mm 297mm;
         }
 
         .header {
@@ -19,39 +19,39 @@
         .footer {
             background-color: #476b6b;
             color: white;
-            height: 80px;
+            height: 100px;
         }
 
         .heading-para1 {
             font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-            font-size: 2em;
+            font-size: 4em;
             font-style: normal;
             margin: 0;
         }
 
         .heading-para2 {
             font-family: "Times New Roman", Times, serif;
-            font-size: 2em;
-            font-style: italic;
+            font-size: 30px;
+            font-style: normal;
             margin: 0;
         }
 
         .row0col1 {
             float:left;
             background-color: white;
-            width: 60%;
+            width: 40%;
             height: 100px;
         }
         .row0col2 {
             float:left;
             background-color: white;
-            width: 20%;
+            width: 25%;
             height: 100px;
         }
         .row0col3 {
             float:left;
             background-color: white;
-            width: 20%;
+            width: 25%;
             height: 100px;
         }
 
@@ -96,27 +96,27 @@
 
 <body>
     <div class="header">
-        <div style='width:50%;float:left;margin:0'>
-            <h1 class='heading-para1'>MAARS ACADEMY</h1>
+        <div style='width:100%;float:left;margin:0'>
+            <h1 class='heading-para1' style='text-align:center'>MAARS ACADEMY</h1>
         </div>
 
-        <div style='width:50%;margin:0;float:right;text-align:right;padding-right:30px'>
-            <h1 class='heading-para2'>Statement</h1>
+<!--         <div style='width:20%;margin:0;float:right;text-align:right;padding-right:30px'>
+            
         </div>
+ -->
     </div>
 
-    <div style='height:80px;color:#00cc99'>
+    <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
-          <ul style="margin:0;list-style:none;padding-left:0">
-          </ul>  
+            <h1 class='heading-para2'>Student Statement</h1>
         </div>
 
         <div class="row0col2" style='color:#9999ff'>
-          <ul style="margin:0;list-style:none;padding-left:0;font-size:14px">
-            <li style="text-align:right;padding-right:5px;font-size:18px">Date:</li>
-            <li style="text-align:right;padding-right:5px;font-size:18px">Statement#:</li>
-            <li style="text-align:right;padding-right:5px;font-size:18px">Student ID:</li>
-            <li style="text-align:right;padding-right:5px;font-size:18px">Student Name:</li>
+          <ul style="margin:0;list-style:none;padding-left:0">
+            <li style="text-align:right;padding-right:5px">Date:</li>
+            <li style="text-align:right;padding-right:5px">Statement No:</li>
+            <li style="text-align:right;padding-right:5px">Student ID:</li>
+            <li style="text-align:right;padding-right:5px">Student Name:</li>
           </ul>  
         </div>
 
@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    <div style='margin-top:10px;height:150px;color:#00cc99;border-color:#808080;border-style:solid;border-width:2px'>
+    <div style='margin-top:10px;height:150px;color:#00cc99;border-color:#808080;border-style:solid;border-width:px;font-size:20px'>
         <div class="row1col1">
           <ul style="margin:0;list-style:none;padding-left:0">
             <li style="text-align:right;padding-right:5px">Bill To</li>
