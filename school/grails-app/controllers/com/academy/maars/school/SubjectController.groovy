@@ -11,6 +11,7 @@ class SubjectController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def assetResourceLocator;
+    def pdfRenderingService;
 
     def renderPdf(Subject subjectInstance) {
         response.contentType = 'application/pdf'
@@ -20,12 +21,15 @@ class SubjectController {
     }
 
     def sendEmail(Subject subjectInstance) {
+        ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/test', model: [subjects: Subject.list(), rl:assetResourceLocator])
+
         sendMail {
+            multipart true
             to "calcchelsea@gmail.com"
             subject "INVOICE"
             html g.render(template:'/mail/invoiceTemplate', model:[schedules: Schedule.list()])
+            attachBytes "invoice.pdf", "application/pdf", bytes.toByteArray()
         }
-        respond subjectInstance
     }
 
     def index(Integer max) {
