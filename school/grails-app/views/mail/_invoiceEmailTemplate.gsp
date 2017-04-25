@@ -93,7 +93,7 @@
          </div>
     </div>
 
-    <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
+    <div style='height:160px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
             <h1 class='heading-para2'>Student Statement</h1>
         </div>
@@ -109,10 +109,11 @@
 
         <div class="row0col3" style='color:#9999ff'>
           <ul style="margin:0;list-style:none;padding-left:0">
-            <li style="text-align:left;padding-left:5px">05-23-2017</li>
-            <li style="text-align:left;padding-left:5px">34788709</li>
-            <li style="text-align:left;padding-left:5px">MT007880</li>
-            <li style="text-align:left;padding-left:5px">David Beckham</li>
+            <li style="text-align:left;padding-left:5px">
+                <g:formatDate format="dd-MMM-yyyy" date="${invoice.invoiceDate}"/></li>
+            <li style="text-align:left;padding-left:5px">${invoice.id}</li>
+            <li style="text-align:left;padding-left:5px">${student.id}</li>
+            <li style="text-align:left;padding-left:5px">${student.fullName()}</li>
           </ul>  
         </div>
     </div>
@@ -130,11 +131,11 @@
 
         <div class="row1col2" style='color:#9999ff'>
           <ul style="margin:0;list-style:none;padding-left:0">
-            <li style="text-align:left;padding-left:5px">David Beckham</li>
-            <li style="text-align:left;padding-left:5px">28 St Stephen Rd</li>
-            <li style="text-align:left;padding-left:5px">Aberdeen, NJ 09620</li>
-            <li style="text-align:left;padding-left:5px">(732)456-4672</li>
-            <li style="text-align:left;padding-left:5px">dbeckham@gmail.com</li>
+            <li style="text-align:left;padding-left:5px">${parent.fullName()}</li>
+            <li style="text-align:left;padding-left:5px">${parent.addressLine1}</li>
+            <li style="text-align:left;padding-left:5px">${parent.cityStateZip()}</li>
+            <li style="text-align:left;padding-left:5px">${parent.phoneNo}</li>
+            <li style="text-align:left;padding-left:5px">${parent.email}</li>
           </ul>  
         </div>
 
@@ -277,6 +278,24 @@
       <p style='margin-bottom:0;margin-top:0'>Thank you!</p>
       <p style='margin-bottom:0;margin-top:0'>100 Overlook Drive, Pondview Bldg A., Monroe Township, NJ 08536 | (973) 229-9988 | maarsacademy.com</p>
     </div>
+
+<!--
+<table>
+	<tbody>
+		<g:each in="${schedules}" status="count" var="schedule">
+			<tr class="${(count % 2) == 0 ? 'even' : 'odd'}">
+				<td>${schedule.id}</td>
+				<td>${schedule.classDate}</td>
+				<td>${schedule.duration}</td>
+				<td>${schedule.fee}</td>
+				<td>${schedule.invoice}</td>
+				<td>${schedule.rate}</td>
+				<td>${schedule.student}</td>
+			</tr>
+		</g:each>
+	</tbody>
+</table>
+-->
 
 </body>
 </html>

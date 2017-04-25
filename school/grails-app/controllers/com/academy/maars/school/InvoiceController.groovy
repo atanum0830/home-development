@@ -22,14 +22,17 @@ class InvoiceController {
 
     def sendEmail(Invoice invoiceInstance) {
         ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/test', model: [invoice: invoiceInstance, rl:assetResourceLocator])
-        String mailAddress = invoiceInstance.student.parent.email;
+        Student student = invoiceInstance.student;
+        Parent parent = student.parent;
+        //String mailAddress = parent.email;
 
         sendMail {
             multipart true
-            to mailAddress
+            to parent.email
             subject "INVOICE"
-            html g.render(template:'/mail/invoiceTemplate', model:[schedules: invoiceInstance.schedules])
-            attachBytes "invoice.pdf", "application/pdf", bytes.toByteArray()
+            html g.render(template:'/mail/invoiceEmailTemplate', 
+                model:[invoice:invoiceInstance, student:student, parent:parent, schedules:invoiceInstance.schedules])
+            attachBytes "studentInvoice.pdf", "application/pdf", bytes.toByteArray()
         }
     }
 

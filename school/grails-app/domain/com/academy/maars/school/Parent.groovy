@@ -28,6 +28,14 @@ class Parent {
 		addressLine2 blank:true, nullable:true
     }
 
+	public String fullName() {
+		firstName +' ' + lastName
+	}
+
+	public String cityStateZip() {
+		city + ', ' + stateCode + ' ' + zip 
+	}
+
     public String toString() {
     	id + ':' + firstName + ' ' + lastName + '(' + relation + ')'
     }
