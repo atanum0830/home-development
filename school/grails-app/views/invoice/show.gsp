@@ -104,7 +104,9 @@
 
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 
-					<g:link class="edit" action="email" resource="${invoiceInstance}">Email</g:link>
+					<g:link class="email" action="sendEmail" resource="${invoiceInstance}">Email</g:link>
+
+					<g:link class="pdf" action="renderPdf" resource="${invoiceInstance}">PDF</g:link>
 				</fieldset>
 			</g:form>
 		</div>

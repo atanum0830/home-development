@@ -10,6 +10,29 @@ class InvoiceController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def assetResourceLocator;
+    def pdfRenderingService;
+
+    def renderPdf(Invoice invoiceInstance) {
+        response.contentType = 'application/pdf'
+        response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
+
+        renderPdf(template: '/mail/test', model: [invoice: invoiceInstance, rl:assetResourceLocator], filename: "invoice.pdf")
+    }
+
+    def sendEmail(Invoice invoiceInstance) {
+        ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/test', model: [invoice: invoiceInstance, rl:assetResourceLocator])
+        String mailAddress = invoiceInstance.student.parent.email;
+
+        sendMail {
+            multipart true
+            to mailAddress
+            subject "INVOICE"
+            html g.render(template:'/mail/invoiceTemplate', model:[schedules: invoiceInstance.schedules])
+            attachBytes "invoice.pdf", "application/pdf", bytes.toByteArray()
+        }
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Invoice.list(params), model:[invoiceInstanceCount: Invoice.count()]
