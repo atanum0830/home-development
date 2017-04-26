@@ -28,4 +28,13 @@ class Invoice {
         id
     }
 
+    public Float getTotalFees() {
+        float amount = 0.0;
+        amount;
+    }
+
+    public Date getDueDate() {
+        invoiceDate;
+    }
+
 }
