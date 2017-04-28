@@ -165,48 +165,19 @@
         </thead>
 
         <tbody>
-            <tr style='color:#00cc99'>
-                <td>2300911</td>
-                <td>04-05-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
-            <tr style='color:#00cc99;background-color:#e0ebeb;'>
-                <td>2300912</td>
-                <td>04-12-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
+            <g:each in="${schedules}" status="count" var="schedule">
+                <tr style="${(count % 2) == 0 ? 'color:#00cc99' : 'color:#00cc99;background-color:#e0ebeb;'}">
+                    <td>${schedule.id}</td>
+                    <td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
+                    <td><g:formatDate format="HH:mm" date="${schedule.classDate}"/></td>
+                    <td><g:formatNumber number="${schedule.duration}" type="number" maxFractionDigits="0"/> mins</td>
+                    <td>${schedule.subject.name}</td>
+                    <td>${schedule.rate.rateCode}</td>
+                    <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
+                    <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
+                </tr>
+            </g:each>
 
-            <tr style='color:#00cc99'>
-                <td>2300913</td>
-                <td>04-19-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
-
-            <tr style='color:#00cc99;background-color:#e0ebeb;'>
-                <td>2300914</td>
-                <td>04-26-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
             <tr style='color:#00cc99'>
                 <td></td>
                 <td></td>
@@ -234,12 +205,12 @@
 
         <tbody>
             <tr style='color:#00cc99'>
-                <td>$450.00</td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD" /></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>$450.00</td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD" /></td>
             </tr>
         </tbody>
     </table>
@@ -255,19 +226,21 @@
         <tbody>
             <tr style='color:#00cc99;background-color:white'>
                 <td>Statement#</td>
-                <td>23676529</td>
+                <td>${invoice.id}</td>
            </tr>
             <tr style='color:#00cc99;'>
                 <td>Date Due</td>
-                <td style='background-color:#e0ebeb'>04-12-2017</td>
+                <td style='background-color:#e0ebeb'>
+                    <g:formatDate format="dd-MMM-yyyy" date="${invoice.getDueDate()}"/>
+                </td>
            </tr>
             <tr style='color:#00cc99;background-color:white'>
                 <td>Amount Due</td>
-                <td></td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD"/></td>
            </tr>
             <tr style='color:#00cc99;'>
                 <td>Amount Enclosed</td>
-                <td style='background-color:#e0ebeb'></td>
+                <td style='background-color:#e0ebeb'><g:formatNumber number="${invoice.checkAmt}" type="currency" currencyCode="USD"/></td>
            </tr>
          </tbody>
     </table>
