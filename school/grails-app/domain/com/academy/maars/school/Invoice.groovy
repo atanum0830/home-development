@@ -29,12 +29,14 @@ class Invoice {
     }
 
     public Float getTotalFees() {
-        float amount = 0.0;
+        float amount = schedules.sum {it.fee}
         amount;
     }
 
     public Date getDueDate() {
-        invoiceDate;
+        Date date = new Date() + 7
+        date;
+        //invoiceDate;
     }
 
 }
