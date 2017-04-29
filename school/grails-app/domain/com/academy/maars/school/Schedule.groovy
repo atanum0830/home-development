@@ -6,6 +6,8 @@ class Schedule {
 	Float duration
 	Rate rate
 	Float fee
+	Boolean attended = true;
+	String notes
 	
 	static belongsTo = [student: Student, invoice: Invoice]
 	//static belongsTo = [student: Student]
@@ -20,6 +22,7 @@ class Schedule {
 		classDate blank:false
 		duration blank:false
 		fee blank:false
+		notes blank:true, nullable:true
 		//invoice nullable:true
 	}
 }

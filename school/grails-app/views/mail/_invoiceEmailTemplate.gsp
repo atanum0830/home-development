@@ -93,7 +93,7 @@
          </div>
     </div>
 
-    <div style='height:160px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
+    <div style='height:140px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
             <h1 class='heading-para2'>Student Statement</h1>
         </div>
