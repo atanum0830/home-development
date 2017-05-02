@@ -14,17 +14,25 @@ class InvoiceController {
     def pdfRenderingService;
 
     def renderPdf(Invoice invoiceInstance) {
-        response.contentType = 'application/pdf'
-        response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
-
-        renderPdf(template: '/mail/test', model: [invoice: invoiceInstance, rl:assetResourceLocator], filename: "invoice.pdf")
-    }
-
-    def sendEmail(Invoice invoiceInstance) {
-        ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/test', model: [invoice: invoiceInstance, rl:assetResourceLocator])
         Student student = invoiceInstance.student;
         Parent parent = student.parent;
         def schedules = invoiceInstance.schedules.sort { it.id }
+
+        response.contentType = 'application/pdf'
+        response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
+
+        renderPdf(template: '/mail/invoicePDFTemplate', 
+            model: [invoice: invoiceInstance, student:student, parent:parent, schedules:schedules, rl:assetResourceLocator], 
+            filename: "invoice.pdf")
+    }
+
+    def sendEmail(Invoice invoiceInstance) {
+        Student student = invoiceInstance.student;
+        Parent parent = student.parent;
+        def schedules = invoiceInstance.schedules.sort { it.id }
+
+        ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/invoicePDFTemplate', 
+            model: [invoice: invoiceInstance, student:student, parent:parent, schedules:schedules, rl:assetResourceLocator])
 
         sendMail {
             multipart true

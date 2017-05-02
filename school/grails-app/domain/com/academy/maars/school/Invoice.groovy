@@ -6,6 +6,7 @@ class Invoice {
 	Date paymentDate
 	Integer checkNo
 	Float checkAmt
+    String imageFileName;
 	Boolean isPaid = false;
 
     static belongsTo = [student: Student]
@@ -22,6 +23,7 @@ class Invoice {
     	paymentDate blank:true, nullable:true
     	checkNo blank:true, nullable:true
     	checkAmt blank:true, nullable:true
+        imageFileName blank:true, nullable:true
     }
 
     public String toString() {
