@@ -104,10 +104,16 @@
     </style>
 </head>
 
-<body>
+
+<body style="${docType == 'PDF'? '': 'width:785px;height:800px;'}">
     <div class="header">
         <div style='width:100%;float:left;margin:0;padding:0;text-align:center'>
-            <rendering:inlinePng bytes="${rl?.findAssetForURI('maarslogo.png').byteArray}"/>
+            <g:if test="${docType == 'PDF'}">
+                <rendering:inlinePng bytes="${rl?.findAssetForURI('maarslogo.png').byteArray}"/>
+            </g:if>
+            <g:if test="${docType == 'EMAIL'}">
+                <h1 class='heading-para1'>MAARS ACADEMY</h1>
+            </g:if>
          </div>
 
     </div>
