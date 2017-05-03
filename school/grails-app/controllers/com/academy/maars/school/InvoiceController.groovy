@@ -21,8 +21,10 @@ class InvoiceController {
         response.contentType = 'application/pdf'
         response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
 
-        renderPdf(template: '/mail/invoicePDFTemplate', 
-            model: [invoice: invoiceInstance, student:student, parent:parent, schedules:schedules, rl:assetResourceLocator], 
+        renderPdf(
+            template: '/mail/invoicePDFTemplate', 
+            model: [invoice: invoiceInstance, student:student, parent:parent, 
+                    schedules:schedules, rl:assetResourceLocator, docType:'PDF'], 
             filename: "invoice.pdf")
     }
 
@@ -31,15 +33,19 @@ class InvoiceController {
         Parent parent = student.parent;
         def schedules = invoiceInstance.schedules.sort { it.id }
 
-        ByteArrayOutputStream bytes = pdfRenderingService.render(template: '/mail/invoicePDFTemplate', 
-            model: [invoice: invoiceInstance, student:student, parent:parent, schedules:schedules, rl:assetResourceLocator])
+        ByteArrayOutputStream bytes = pdfRenderingService.render(
+                                template: '/mail/invoicePDFTemplate', 
+                                model: [invoice: invoiceInstance, student:student, parent:parent, 
+                                    schedules:schedules, rl:assetResourceLocator, docType:'PDF'])
 
         sendMail {
             multipart true
             to parent.email
             subject "INVOICE"
-            html g.render(template:'/mail/invoiceEmailTemplate', 
-                model:[invoice:invoiceInstance, student:student, parent:parent, schedules:schedules])
+            html g.render(
+                template:'/mail/invoiceEmailTemplate', 
+                model:[invoice:invoiceInstance, student:student, parent:parent,
+                        schedules:schedules, docType:'EMAIL'])
 
             attachBytes "studentInvoice.pdf", "application/pdf", bytes.toByteArray()
         }

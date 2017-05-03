@@ -2,19 +2,29 @@
 <html>
 <head>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        <g:if test="${docType == 'PDF'}">
+            * {
+                box-sizing: border-box;
+            }
 
-        @page {
-        size: 210mm 297mm;
-        }
+            @page {
+            size: 210mm 297mm;
+            }
 
-        .header {
-            background-color: white;
-            color: #00cc99;
-            height: 240px;
-        }
+            .header {
+                background-color: white;
+                color: #00cc99;
+                height: 240px;
+            }
+        </g:if>
+
+        <g:if test="${docType == 'EMAIL'}">
+            .header {
+                background-color: white;
+                color: #00cc99;
+                height: 70px;
+            }
+        </g:if>
 
         .footer {
             background-color: #476b6b;
@@ -105,6 +115,7 @@
     <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
             <h1 class='heading-para2'>Student Statement</h1>
+            <g:if test="${docType == 'PDF'}"><h1>This is PDF</h1></g:if>
         </div>
 
         <div class="row0col2" style='color:#9999ff'>
@@ -224,7 +235,7 @@
         </tbody>
     </table>
 
-   <table style='width:30%;margin-top:10px'>
+   <table style='width:50%;margin-top:10px'>
         <thead>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
                 <td style='width:50%'>Remittance</td>
