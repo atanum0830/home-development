@@ -38,9 +38,18 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'imageFileName', 'error')} ">
+	<label for="imageFileName">
+		<g:message code="invoice.imageFileName.label" default="Image File Name" />
+		
+	</label>
+	<g:textField name="imageFileName" value="${invoiceInstance?.imageFileName}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'invoiceAmt', 'error')} required">
 	<label for="invoiceAmt">
-		<g:message code="invoice.invoicAmt.label" default="Invoice Amt" />
+		<g:message code="invoice.invoiceAmt.label" default="Invoice Amt" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="invoiceAmt" value="${fieldValue(bean: invoiceInstance, field: 'invoiceAmt')}" required=""/>
@@ -53,6 +62,24 @@
 		
 	</label>
 	<g:checkBox name="isPaid" value="${invoiceInstance?.isPaid}" />
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: invoiceInstance, field: 'miscItems', 'error')} ">
+	<label for="miscItems">
+		<g:message code="invoice.miscItems.label" default="Misc Items" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${invoiceInstance?.miscItems?}" var="m">
+    <li><g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="miscItem" action="create" params="['invoice.id': invoiceInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'miscItem.label', default: 'MiscItem')])}</g:link>
+</li>
+</ul>
+
 
 </div>
 
@@ -90,6 +117,4 @@
 	</g:else>
 
 </div>
-
-
 

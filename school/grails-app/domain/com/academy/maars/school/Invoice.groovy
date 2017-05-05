@@ -11,7 +11,7 @@ class Invoice {
 
     static belongsTo = [student: Student]
     
-    static hasMany = [schedules: Schedule]
+    static hasMany = [schedules: Schedule, miscItems:MiscItem]
 
     static mapping = {
     	table "invoices"
@@ -32,6 +32,7 @@ class Invoice {
 
     public Float getTotalFees() {
         float amount = schedules.sum {it.fee}
+        amount = amount + miscItems.sum {it.amount}
         amount;
     }
 

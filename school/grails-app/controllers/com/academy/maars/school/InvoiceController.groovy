@@ -17,14 +17,15 @@ class InvoiceController {
         Student student = invoiceInstance.student;
         Parent parent = student.parent;
         def schedules = invoiceInstance.schedules.sort { it.id }
+        def miscItems = invoiceInstance.miscItems.sort { it.id }
 
         response.contentType = 'application/pdf'
-        response.setHeader("Content-disposition", "attachment; filename=\"whatSubject.pdf\"")
+        response.setHeader("Content-disposition", "attachment; filename=\"invoice.pdf\"")
 
         renderPdf(
-            template: '/mail/invoicePDFTemplate', 
-            model: [invoice: invoiceInstance, student:student, parent:parent, 
-                    schedules:schedules, rl:assetResourceLocator, docType:'PDF'], 
+            template: '/mail/invoiceTemplate', 
+            model: [invoice: invoiceInstance, student:student, parent:parent, schedules:schedules,
+                    miscItems:miscItems, rl:assetResourceLocator, docType:'PDF'], 
             filename: "invoice.pdf")
     }
 
@@ -32,20 +33,22 @@ class InvoiceController {
         Student student = invoiceInstance.student;
         Parent parent = student.parent;
         def schedules = invoiceInstance.schedules.sort { it.id }
+        def miscItems = invoiceInstance.miscItems.sort { it.id }
 
         ByteArrayOutputStream bytes = pdfRenderingService.render(
-                                template: '/mail/invoicePDFTemplate', 
-                                model: [invoice: invoiceInstance, student:student, parent:parent, 
-                                    schedules:schedules, rl:assetResourceLocator, docType:'PDF'])
+                                template: '/mail/invoiceTemplate', 
+                                model: [invoice: invoiceInstance, student:student, parent:parent,
+                                        schedules:schedules, miscItems:miscItems, rl:assetResourceLocator,
+                                        docType:'PDF'])
 
         sendMail {
             multipart true
             to parent.email
             subject "INVOICE"
             html g.render(
-                template:'/mail/invoiceEmailTemplate', 
+                template:'/mail/invoiceTemplate', 
                 model:[invoice:invoiceInstance, student:student, parent:parent,
-                        schedules:schedules, docType:'EMAIL'])
+                        schedules:schedules, miscItems:miscItems, docType:'EMAIL'])
 
             attachBytes "studentInvoice.pdf", "application/pdf", bytes.toByteArray()
         }

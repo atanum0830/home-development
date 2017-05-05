@@ -121,7 +121,6 @@
     <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
             <h1 class='heading-para2'>Student Statement</h1>
-            <g:if test="${docType == 'PDF'}"><h1>This is PDF</h1></g:if>
         </div>
 
         <div class="row0col2" style='color:#9999ff'>
@@ -220,12 +219,12 @@
     <table width='100%'>
         <thead>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
-                <td style='width:12%'>Current</td>
-                <td style='width:12%'>1-30 Days</td>
-                <td style='width:12%'>31-60 Days</td>
-                <td style='width:11%'>61-90 Days</td>
-                <td style='width:25%'>Over 90 Days</td>
-                <td style='width:28%'>Amount Due</td>
+                <td style='width:16%'>Current</td>
+                <td style='width:16%'>1-30 Days</td>
+                <td style='width:17%'>31-60 Days</td>
+                <td style='width:17%'>61-90 Days</td>
+                <td style='width:17%'>Over 90 Days</td>
+                <td style='width:17%'>Amount Due</td>
            </tr>
         </thead>
 

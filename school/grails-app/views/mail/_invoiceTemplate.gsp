@@ -2,15 +2,29 @@
 <html>
 <head>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        <g:if test="${docType == 'PDF'}">
+            * {
+                box-sizing: border-box;
+            }
 
-        .header {
-            background-color: white;
-            color: #00cc99;
-            height: 70px;
-        }
+            @page {
+            size: 210mm 297mm;
+            }
+
+            .header {
+                background-color: white;
+                color: #00cc99;
+                height: 240px;
+            }
+        </g:if>
+
+        <g:if test="${docType == 'EMAIL'}">
+            .header {
+                background-color: white;
+                color: #00cc99;
+                height: 70px;
+            }
+        </g:if>
 
         .footer {
             background-color: #476b6b;
@@ -90,14 +104,21 @@
     </style>
 </head>
 
-<body style='width:785px;height:800px;'>
+
+<body style="${docType == 'PDF'? '': 'width:785px;height:800px;'}">
     <div class="header">
         <div style='width:100%;float:left;margin:0;padding:0;text-align:center'>
-            <h1 class='heading-para1'>MAARS ACADEMY</h1>
+            <g:if test="${docType == 'PDF'}">
+                <rendering:inlinePng bytes="${rl?.findAssetForURI('maarslogo.png').byteArray}"/>
+            </g:if>
+            <g:if test="${docType == 'EMAIL'}">
+                <h1 class='heading-para1'>MAARS ACADEMY</h1>
+            </g:if>
          </div>
+
     </div>
 
-    <div style='height:160px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
+    <div style='height:120px;color:#00cc99;font-size:22px;margin-top:10px;margin-bottom:10px;border-color:#808080;border-style:solid;border-width:2px;'>
         <div class="row0col1">
             <h1 class='heading-para2'>Student Statement</h1>
         </div>
@@ -113,10 +134,11 @@
 
         <div class="row0col3" style='color:#9999ff'>
           <ul style="margin:0;list-style:none;padding-left:0">
-            <li style="text-align:left;padding-left:5px">05-23-2017</li>
-            <li style="text-align:left;padding-left:5px">34788709</li>
-            <li style="text-align:left;padding-left:5px">MT007880</li>
-            <li style="text-align:left;padding-left:5px">David Beckham</li>
+            <li style="text-align:left;padding-left:5px">
+                <g:formatDate format="dd-MMM-yyyy" date="${invoice.invoiceDate}"/></li>
+            <li style="text-align:left;padding-left:5px">${invoice.id}</li>
+            <li style="text-align:left;padding-left:5px">${student.id}</li>
+            <li style="text-align:left;padding-left:5px">${student.fullName()}</li>
           </ul>  
         </div>
     </div>
@@ -134,11 +156,11 @@
 
         <div class="row1col2" style='color:#9999ff'>
           <ul style="margin:0;list-style:none;padding-left:0">
-            <li style="text-align:left;padding-left:5px">David Beckham</li>
-            <li style="text-align:left;padding-left:5px">28 St Stephen Rd</li>
-            <li style="text-align:left;padding-left:5px">Aberdeen, NJ 09620</li>
-            <li style="text-align:left;padding-left:5px">(732)456-4672</li>
-            <li style="text-align:left;padding-left:5px">dbeckham@gmail.com</li>
+            <li style="text-align:left;padding-left:5px">${parent.fullName()}</li>
+            <li style="text-align:left;padding-left:5px">${parent.addressLine1}</li>
+            <li style="text-align:left;padding-left:5px">${parent.cityStateZip()}</li>
+            <li style="text-align:left;padding-left:5px">${parent.phoneNo}</li>
+            <li style="text-align:left;padding-left:5px">${parent.email}</li>
           </ul>  
         </div>
 
@@ -168,48 +190,32 @@
         </thead>
 
         <tbody>
-            <tr style='color:#00cc99'>
-                <td>2300911</td>
-                <td>04-05-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
-            <tr style='color:#00cc99;background-color:#e0ebeb;'>
-                <td>2300912</td>
-                <td>04-12-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
+            <g:each in="${schedules}" status="count" var="schedule">
+                <tr style="${(count % 2) == 0 ? 'color:#00cc99' : 'color:#00cc99;background-color:#e0ebeb;'}">
+                    <td>${schedule.id}</td>
+                    <td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
+                    <td><g:formatDate format="HH:mm" date="${schedule.classDate}"/></td>
+                    <td><g:formatNumber number="${schedule.duration}" type="number" maxFractionDigits="0"/> mins</td>
+                    <td>${schedule.subject.name}</td>
+                    <td>${schedule.rate.rateCode}</td>
+                    <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
+                    <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
+                </tr>
+            </g:each>
 
-            <tr style='color:#00cc99'>
-                <td>2300913</td>
-                <td>04-19-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
+            <g:each in="${miscItems}" status="count" var="miscItem">
+                <tr style="${(count % 2) == 0 ? 'color:#00cc99' : 'color:#00cc99;background-color:#e0ebeb;'}">
+                    <td>${miscItem.id}</td>
+                    <td><g:formatDate format="dd-MMM-yyyy" date="${miscItem.itemDate}"/></td>
+                    <td></td>
+                    <td></td>
+                    <td>${miscItem.name}</td>
+                    <td></td>
+                    <td></td>
+                    <td><g:formatNumber number="${miscItem.amount}" type="currency" currencyCode="USD"/></td>
+                </tr>
+            </g:each>
 
-            <tr style='color:#00cc99;background-color:#e0ebeb;'>
-                <td>2300914</td>
-                <td>04-26-2017</td>
-                <td>05:30 PM</td>
-                <td>1:00 HR</td>
-                <td>Language</td>
-                <td>HOURLY</td>
-                <td>$45.00</td>
-                <td>$45.00</td>
-            </tr>
             <tr style='color:#00cc99'>
                 <td></td>
                 <td></td>
@@ -226,28 +232,28 @@
     <table width='100%'>
         <thead>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
-                <td style='width:12%'>Current</td>
-                <td style='width:12%'>1-30 Days</td>
-                <td style='width:12%'>31-60 Days</td>
-                <td style='width:11%'>61-90 Days</td>
-                <td style='width:25%'>Over 90 Days</td>
-                <td style='width:28%'>Amount Due</td>
+                <td style='width:16%'>Current</td>
+                <td style='width:16%'>1-30 Days</td>
+                <td style='width:17%'>31-60 Days</td>
+                <td style='width:17%'>61-90 Days</td>
+                <td style='width:17%'>Over 90 Days</td>
+                <td style='width:17%'>Amount Due</td>
            </tr>
         </thead>
 
         <tbody>
             <tr style='color:#00cc99'>
-                <td>$450.00</td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD" /></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>$450.00</td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD" /></td>
             </tr>
         </tbody>
     </table>
 
-   <table style='width:30%;margin-top:10px'>
+   <table style='width:50%;margin-top:10px'>
         <thead>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
                 <td style='width:50%'>Remittance</td>
@@ -258,19 +264,21 @@
         <tbody>
             <tr style='color:#00cc99;background-color:white'>
                 <td>Statement#</td>
-                <td>23676529</td>
+                <td>${invoice.id}</td>
            </tr>
             <tr style='color:#00cc99;'>
                 <td>Date Due</td>
-                <td style='background-color:#e0ebeb'>04-12-2017</td>
+                <td style='background-color:#e0ebeb'>
+                    <g:formatDate format="dd-MMM-yyyy" date="${invoice.getDueDate()}"/>
+                </td>
            </tr>
             <tr style='color:#00cc99;background-color:white'>
                 <td>Amount Due</td>
-                <td></td>
+                <td><g:formatNumber number="${invoice.getTotalFees()}" type="currency" currencyCode="USD"/></td>
            </tr>
             <tr style='color:#00cc99;'>
                 <td>Amount Enclosed</td>
-                <td style='background-color:#e0ebeb'></td>
+                <td style='background-color:#e0ebeb'><g:formatNumber number="${invoice.checkAmt}" type="currency" currencyCode="USD"/></td>
            </tr>
          </tbody>
     </table>
@@ -281,24 +289,6 @@
       <p style='margin-bottom:0;margin-top:0'>Thank you!</p>
       <p style='margin-bottom:0;margin-top:0'>100 Overlook Drive, Pondview Bldg A., Monroe Township, NJ 08536 | (973) 229-9988 | maarsacademy.com</p>
     </div>
-
-<!--
-<table>
-	<tbody>
-		<g:each in="${schedules}" status="count" var="schedule">
-			<tr class="${(count % 2) == 0 ? 'even' : 'odd'}">
-				<td>${schedule.id}</td>
-				<td>${schedule.classDate}</td>
-				<td>${schedule.duration}</td>
-				<td>${schedule.fee}</td>
-				<td>${schedule.invoice}</td>
-				<td>${schedule.rate}</td>
-				<td>${schedule.student}</td>
-			</tr>
-		</g:each>
-	</tbody>
-</table>
--->
 
 </body>
 </html>

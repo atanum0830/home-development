@@ -59,9 +59,18 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${invoiceInstance?.imageFileName}">
+				<li class="fieldcontain">
+					<span id="imageFileName-label" class="property-label"><g:message code="invoice.imageFileName.label" default="Image File Name" /></span>
+					
+						<span class="property-value" aria-labelledby="imageFileName-label"><g:fieldValue bean="${invoiceInstance}" field="imageFileName"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${invoiceInstance?.invoiceAmt}">
 				<li class="fieldcontain">
-					<span id="invoiceAmt-label" class="property-label"><g:message code="invoice.invoicAmt.label" default="Invoice Amt" /></span>
+					<span id="invoiceAmt-label" class="property-label"><g:message code="invoice.invoiceAmt.label" default="Invoice Amt" /></span>
 					
 						<span class="property-value" aria-labelledby="invoiceAmt-label"><g:fieldValue bean="${invoiceInstance}" field="invoiceAmt"/></span>
 					
@@ -73,6 +82,17 @@
 					<span id="isPaid-label" class="property-label"><g:message code="invoice.isPaid.label" default="Is Paid" /></span>
 					
 						<span class="property-value" aria-labelledby="isPaid-label"><g:formatBoolean boolean="${invoiceInstance?.isPaid}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${invoiceInstance?.miscItems}">
+				<li class="fieldcontain">
+					<span id="miscItems-label" class="property-label"><g:message code="invoice.miscItems.label" default="Misc Items" /></span>
+					
+						<g:each in="${invoiceInstance.miscItems}" var="m">
+						<span class="property-value" aria-labelledby="miscItems-label"><g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>
@@ -112,3 +132,4 @@
 		</div>
 	</body>
 </html>
+
