@@ -108,31 +108,33 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${invoiceInstance?.miscItems}">
-				<li class="fieldcontain">
-					<span id="miscItems-label" class="property-label"><g:message code="invoice.miscItems.label" default="Misc Items" /></span>
-					
-						<g:each in="${invoiceInstance.miscItems}" var="m">
-						<span class="property-value" aria-labelledby="miscItems-label"><g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${invoiceInstance?.schedules}">
-				<li class="fieldcontain">
-					<span id="schedules-label" class="property-label"><g:message code="invoice.schedules.label" default="Schedules" /></span>
-					
-						<g:each in="${invoiceInstance.schedules}" var="s">
-						<span class="property-value" aria-labelledby="schedules-label"><g:link controller="schedule" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
-			
-			
 			</ol>
+
+			<g:if test="${invoiceInstance?.miscItems}">
+			<div class="fieldcontain">
+				<span id="miscItems-label" class="property-label">
+					<g:message code="invoice.miscItems.label" default="Misc Items" />
+				</span>
+				
+				<g:each in="${invoiceInstance.miscItems}" var="m">
+					<span class="property-value" aria-labelledby="miscItems-label">
+						<g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link>
+					</span>
+				</g:each>
+				
+			</div>
+			</g:if>
+		
+			<g:if test="${invoiceInstance?.schedules}">
+			<div class="fieldcontain">
+				<span id="schedules-label" class="property-label"><g:message code="invoice.schedules.label" default="Schedules" /></span>
+				
+					<g:each in="${invoiceInstance.schedules}" var="s">
+					<span class="property-value" aria-labelledby="schedules-label"><g:link controller="schedule" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+					</g:each>
+				
+			</div>
+			</g:if>
 
 		    <div style="float:left;width:100px;height:20px">
 		        <h3>Student1</h3>
