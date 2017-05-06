@@ -12,14 +12,14 @@
 	</tr>
 </thead>
 <tbody>
-	<g:each in="${scheduleInstanceList}" status="i" var="scheduleInstance">
+	<g:each in="${schedules}" status="i" var="schedule">
 		<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-			<td>${fieldValue(bean: scheduleInstance, field: "student")}</td>
-			<td><g:link action="show" controller="schedule" id="${scheduleInstance.id}">${scheduleInstance.id}</g:link></td>
-			<td><g:formatDate format="dd-MMM-yyyy" date="${scheduleInstance.classDate}"/></td>
-			<td><g:formatDate format="HH:mm" date="${scheduleInstance.classDate}"/></td>
-			<td><g:formatDate format="HH:mm" date="${scheduleInstance.classDate}"/></td>
-			<td>${fieldValue(bean: scheduleInstance, field: "duration")}</td>
+			<td>${schedule.student}</td>
+			<td><g:link action="show" controller="schedule" id="${schedule.id}">${schedule.id}</g:link></td>
+			<td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
+			<td><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
+			<td><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
+			<td>${schedule.duration}</td>
 		</tr>
 	</g:each>
 </tbody>
