@@ -105,27 +105,27 @@
 
 			<g:if test="${invoiceInstance?.miscItems}">
 			<div class="fieldcontain">
-				<span id="miscItems-label" class="property-label">
-					<g:message code="invoice.miscItems.label" default="Misc Items" />
-				</span>
-				
-				<g:each in="${invoiceInstance.miscItems}" var="m">
-					<span class="property-value" aria-labelledby="miscItems-label">
-						<g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link>
+				<div style="float:left;width:15%">
+					<span id="miscItems-label" class="property-label">
+						<g:message code="invoice.miscItems.label" default="Miscellaneous" />
 					</span>
-				</g:each>
+				</div>
+				
+				<div style="float:left;width:80%">
+					<g:render template="/schedule/scheduleTable" model="[schedules:invoiceInstance.schedules]"/>
+				</div>
 			</div>
 			</g:if>
 		
 			<g:if test="${invoiceInstance?.schedules}">
 			<div class="fieldcontain">
-				<div style="float:left;width:10%">
+				<div style="float:left;width:15%">
 					<span id="schedules-label" class="property-label">
 						<g:message code="invoice.schedules.label" default="Schedules"/>
 					</span>
 				</div>
 				
-				<div style="float:left;width:85%">
+				<div style="float:left;width:80%">
 					<g:render template="/schedule/scheduleTable" model="[schedules:invoiceInstance.schedules]"/>
 				</div>
 			</div>
