@@ -5,19 +5,6 @@
 	<head>
 		<meta name="layout" content="main">
 		<style>
-        .row0col1 {
-            float:left;
-            background-color: white;
-            width: 30%;
-            height: 100px;
-        }
-        .row0col2 {
-            float:left
-            background-color: white;
-            width: 30%;
-            height: 100px;
-        }
-
 		</style>
 		<g:set var="entityName" value="${message(code: 'invoice.label', default: 'Invoice')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
@@ -121,28 +108,22 @@
 						<g:link controller="miscItem" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link>
 					</span>
 				</g:each>
-				
 			</div>
 			</g:if>
 		
 			<g:if test="${invoiceInstance?.schedules}">
 			<div class="fieldcontain">
-				<span id="schedules-label" class="property-label"><g:message code="invoice.schedules.label" default="Schedules" /></span>
+				<div style="float:left;width:10%">
+					<span id="schedules-label" class="property-label">
+						<g:message code="invoice.schedules.label" default="Schedules"/>
+					</span>
+				</div>
 				
-					<g:each in="${invoiceInstance.schedules}" var="s">
-					<span class="property-value" aria-labelledby="schedules-label"><g:link controller="schedule" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
-					</g:each>
-				
+				<div style="float:left;width:85%">
+					<g:render template="/schedule/scheduleTable" model="[schedules:invoiceInstance.schedules]"/>
+				</div>
 			</div>
 			</g:if>
-
-		    <div style="float:left;width:100px;height:20px">
-		        <h3>Student1</h3>
-		    </div>
-
-		    <div style="float:left;width:100px;height:20px">
-		        <h3>Student2</h3>
-		    </div>
 
 			<g:form style="clear:left;" url="[resource:invoiceInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
