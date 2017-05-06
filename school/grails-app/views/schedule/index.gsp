@@ -21,7 +21,7 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 
-			<g:render template="scheduleTable0" model="[schedules:scheduleInstanceList]"/>
+			<g:render template="scheduleTable" model="[schedules:scheduleInstanceList]"/>
 
 <!--
 

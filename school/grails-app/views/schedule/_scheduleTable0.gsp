@@ -14,12 +14,14 @@
 <tbody>
 	<g:each in="${schedules}" status="i" var="schedule">
 		<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-			<td>${schedule.student}</td>
-			<td><g:link action="show" controller="schedule" id="${schedule.id}">${schedule.id}</g:link></td>
-			<td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
-			<td><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
-			<td><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
-			<td>${schedule.duration}</td>
+		<td>
+		<g:link action="show" controller="student" id="${schedule.student.id}">${schedule.student}</g:link>
+		</td>
+		<td><g:link action="show" controller="schedule" id="${schedule.id}">${schedule.id}</g:link></td>
+		<td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
+		<td><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
+		<td><g:formatDate format="hh:mm a" date="${schedule.endTime}"/></td>
+		<td>${schedule.duration}</td>
 		</tr>
 	</g:each>
 </tbody>
