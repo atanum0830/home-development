@@ -35,19 +35,25 @@
 			
 				<g:if test="${invoiceInstance?.invoiceDate}">
 				<li class="fieldcontain">
-					<span id="invoiceDate-label" class="property-label"><g:message code="invoice.invoiceDate.label" default="Invoice Date" /></span>
+					<span id="invoiceDate-label" class="property-label">
+						<g:message code="invoice.invoiceDate.label" default="Invoice Date" />
+					</span>
 					
-						<span class="property-value" aria-labelledby="invoiceDate-label"><g:formatDate date="${invoiceInstance?.invoiceDate}" /></span>
-					
+					<span class="property-value" aria-labelledby="invoiceDate-label">
+						<g:formatDate format="dd-MMM-yyyy" date="${invoiceInstance?.invoiceDate}"/>
+					</span>
 				</li>
 				</g:if>
 			
 				<g:if test="${invoiceInstance?.paymentDate}">
 				<li class="fieldcontain">
-					<span id="paymentDate-label" class="property-label"><g:message code="invoice.paymentDate.label" default="Payment Date" /></span>
+					<span id="paymentDate-label" class="property-label">
+						<g:message code="invoice.paymentDate.label" default="Payment Date"/>
+					</span>
 					
-						<span class="property-value" aria-labelledby="paymentDate-label"><g:formatDate date="${invoiceInstance?.paymentDate}" /></span>
-					
+					<span class="property-value" aria-labelledby="paymentDate-label">
+						<g:formatDate format="dd-MMM-yyyy" date="${invoiceInstance?.paymentDate}"/>
+					</span>
 				</li>
 				</g:if>
 			
