@@ -22,11 +22,8 @@
 			</g:if>
 
 			<g:render template="scheduleTable" model="[schedules:scheduleInstanceList]"/>
-
 <!--
-
 -->
-
 			<div class="pagination">
 				<g:paginate total="${scheduleInstanceCount ?: 0}" />
 			</div>

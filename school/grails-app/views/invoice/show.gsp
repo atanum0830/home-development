@@ -4,6 +4,21 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
+		<style>
+        .row0col1 {
+            float:left;
+            background-color: white;
+            width: 30%;
+            height: 100px;
+        }
+        .row0col2 {
+            float:left
+            background-color: white;
+            width: 30%;
+            height: 100px;
+        }
+
+		</style>
 		<g:set var="entityName" value="${message(code: 'invoice.label', default: 'Invoice')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
@@ -22,6 +37,14 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list invoice">
+				<g:if test="${invoiceInstance?.student}">
+				<li class="fieldcontain">
+					<span id="student-label" style="float:left" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
+					
+					<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${invoiceInstance?.student?.id}">${invoiceInstance?.student?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${invoiceInstance?.invoiceDate}">
 				<li class="fieldcontain">
@@ -108,17 +131,18 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${invoiceInstance?.student}">
-				<li class="fieldcontain">
-					<span id="student-label" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
-					
-						<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${invoiceInstance?.student?.id}">${invoiceInstance?.student?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
 			
 			</ol>
-			<g:form url="[resource:invoiceInstance, action:'delete']" method="DELETE">
+
+		    <div style="float:left;width:100px;height:20px">
+		        <h3>Student1</h3>
+		    </div>
+
+		    <div style="float:left;width:100px;height:20px">
+		        <h3>Student2</h3>
+		    </div>
+
+			<g:form style="clear:left;" url="[resource:invoiceInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${invoiceInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 
@@ -129,6 +153,7 @@
 					<g:link class="pdf" action="renderPdf" resource="${invoiceInstance}">PDF</g:link>
 				</fieldset>
 			</g:form>
+
 		</div>
 	</body>
 </html>
