@@ -26,7 +26,7 @@
 <!--
 Start of the page elements
 -->
-
+			<div style="float:left;width:45%;border:1px solid grey;">
 			<ol class="property-list invoice">
 				<li class="fieldcontain">
 					<span id="invoice-No" style="float:left" class="property-label">Invoice No.</span>
@@ -35,15 +35,6 @@ Start of the page elements
 					</span>
 				</li>
 
-				<g:if test="${invoiceInstance?.student}">
-				<li class="fieldcontain">
-					<span id="student-label" style="float:left" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
-					
-					<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${invoiceInstance?.student?.id}">${invoiceInstance?.student?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${invoiceInstance?.invoiceDate}">
 				<li class="fieldcontain">
 					<span id="invoiceDate-label" class="property-label">
@@ -63,7 +54,7 @@ Start of the page elements
 					<g:formatNumber number="${invoiceInstance.totalFees}" type="currency" currencyCode="USD"/>
 					</span>
 				</li>
-			
+
 				<g:if test="${invoiceInstance?.paymentDate}">
 				<li class="fieldcontain">
 					<span id="paymentDate-label" class="property-label">
@@ -120,11 +111,25 @@ Start of the page elements
 					
 				</li>
 				</g:if>
-
 			</ol>
+			</div>
+
+			<div style="float:left;width:45%;border:1px solid grey;">
+			<ol class="property-list invoice">
+				<g:if test="${invoiceInstance?.student}">
+				<g:set var="student" value="${invoiceInstance.student}"/>
+				<li class="fieldcontain">
+					<span id="student-label" style="float:left" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
+					
+					<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${student?.id}">${student?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			</ol>
+			</div>
 
 			<g:if test="${invoiceInstance?.schedules}">
-			<div class="fieldcontain">
+			<div class="fieldcontain" style="clear:left">
 				<div style="float:left;width:15%">
 					<span id="schedules-label" class="property-label">
 						<g:message code="invoice.schedules.label" default="Schedules"/>
