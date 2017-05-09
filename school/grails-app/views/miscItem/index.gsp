@@ -21,6 +21,7 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 <!--
+miscItemInstanceList
 -->
 			<g:render template="miscItemTable" model="[miscItems:miscItemInstanceList]"/>
 			

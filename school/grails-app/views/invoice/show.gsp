@@ -103,20 +103,6 @@
 				</g:if>
 			</ol>
 
-			<g:if test="${invoiceInstance?.miscItems}">
-			<div class="fieldcontain">
-				<div style="float:left;width:15%">
-					<span id="miscItems-label" class="property-label">
-						<g:message code="invoice.miscItems.label" default="Miscellaneous" />
-					</span>
-				</div>
-				
-				<div style="float:left;width:80%">
-					<g:render template="/schedule/scheduleTable" model="[schedules:invoiceInstance.schedules]"/>
-				</div>
-			</div>
-			</g:if>
-		
 			<g:if test="${invoiceInstance?.schedules}">
 			<div class="fieldcontain">
 				<div style="float:left;width:15%">
@@ -131,6 +117,20 @@
 			</div>
 			</g:if>
 
+			<g:if test="${invoiceInstance?.miscItems}">
+			<div class="fieldcontain">
+				<div style="float:left;width:15%">
+					<span id="miscItems-label" class="property-label">
+						<g:message code="invoice.miscItems.label" default="Miscellaneous" />
+					</span>
+				</div>
+				
+				<div style="float:left;width:80%">
+					<g:render template="/miscItem/miscItemTable" model="[miscItems:invoiceInstance.miscItems]"/>
+				</div>
+			</div>
+			</g:if>
+		
 			<g:form style="clear:left;" url="[resource:invoiceInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${invoiceInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

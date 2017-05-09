@@ -18,7 +18,7 @@
 			<td>
 			<g:link action="show" controller="invoice" id="${miscItem.invoice.id}">${miscItem.invoice.id}</g:link>
 			</td>
-			<td><g:link action="show" id="${miscItem.id}">${miscItem.id}</g:link></td>
+			<td><g:link action="show" controller="miscItem" id="${miscItem.id}">${miscItem.id}</g:link></td>
 			<td><g:formatDate format="dd-MMM-yyyy" date="${miscItem.itemDate}"/></td>
 			<td>${miscItem.name}</td>
 			<td>${miscItem.amount}</td>
