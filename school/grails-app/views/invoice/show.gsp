@@ -23,7 +23,18 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+<!--
+Start of the page elements
+-->
+
 			<ol class="property-list invoice">
+				<li class="fieldcontain">
+					<span id="invoice-No" style="float:left" class="property-label">Invoice No.</span>
+
+					<span class="property-value" aria-labelledby="student-label">${invoiceInstance.id}
+					</span>
+				</li>
+
 				<g:if test="${invoiceInstance?.student}">
 				<li class="fieldcontain">
 					<span id="student-label" style="float:left" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
@@ -44,6 +55,14 @@
 					</span>
 				</li>
 				</g:if>
+
+				<li class="fieldcontain">
+					<span id="invoice-total" style="float:left" class="property-label">Invoice Total</span>
+
+					<span class="property-value" aria-labelledby="student-label">
+					<g:formatNumber number="${invoiceInstance.totalFees}" type="currency" currencyCode="USD"/>
+					</span>
+				</li>
 			
 				<g:if test="${invoiceInstance?.paymentDate}">
 				<li class="fieldcontain">
@@ -101,6 +120,7 @@
 					
 				</li>
 				</g:if>
+
 			</ol>
 
 			<g:if test="${invoiceInstance?.schedules}">

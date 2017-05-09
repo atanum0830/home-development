@@ -21,7 +21,7 @@
 			<td><g:link action="show" controller="miscItem" id="${miscItem.id}">${miscItem.id}</g:link></td>
 			<td><g:formatDate format="dd-MMM-yyyy" date="${miscItem.itemDate}"/></td>
 			<td>${miscItem.name}</td>
-			<td>${miscItem.amount}</td>
+			<td><g:formatNumber number="${miscItem.amount}" type="currency" currencyCode="USD"/></td>
 		</tr>
 	</g:each>
 </tbody>

@@ -30,9 +30,15 @@
 		<td style="white-space:nowrap"><g:formatDate format="hh:mm a" date="${schedule.endTime}"/></td>
 		<td style="white-space:nowrap">${schedule.duration}</td>
 		<td style="white-space:nowrap">${schedule.rate.rateCode}</td>
-		<td style="white-space:nowrap">${schedule.fee}</td>
-		<td style="white-space:nowrap">${schedule.fee}</td>
+		<td style="white-space:nowrap">
+			<g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/>
+		</td>
+		<td style="white-space:nowrap">
+			<g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/>
+		</td>
 		</tr>
 	</g:each>
 </tbody>
 </table>
+
+
