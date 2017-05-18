@@ -29,39 +29,39 @@ Start of the page elements
 			<div style="float:left;width:45%;border:1px solid grey;">
 			<ol class="property-list invoice">
 				<li class="fieldcontain">
-					<span id="invoice-No" style="float:left" class="property-label">Invoice No.</span>
+					<span id="invoice-No" style="width:50%" class="property-label">Invoice No</span>
 
-					<span class="property-value" aria-labelledby="student-label">${invoiceInstance.id}
+					<span class="property-value" style="margin-left:60%" aria-labelledby="student-label">${invoiceInstance.id}
 					</span>
 				</li>
 
 				<g:if test="${invoiceInstance?.invoiceDate}">
 				<li class="fieldcontain">
-					<span id="invoiceDate-label" class="property-label">
+					<span id="invoiceDate-label" style="width:50%" class="property-label">
 						<g:message code="invoice.invoiceDate.label" default="Invoice Date" />
 					</span>
 					
-					<span class="property-value" aria-labelledby="invoiceDate-label">
+					<span class="property-value" style="margin-left:60%" aria-labelledby="invoiceDate-label">
 						<g:formatDate format="dd-MMM-yyyy" date="${invoiceInstance?.invoiceDate}"/>
 					</span>
 				</li>
 				</g:if>
 
 				<li class="fieldcontain">
-					<span id="invoice-total" style="float:left" class="property-label">Invoice Total</span>
+					<span id="invoice-total" style="width:50%" class="property-label">Invoice Total</span>
 
-					<span class="property-value" aria-labelledby="student-label">
+					<span class="property-value" style="margin-left:60%" aria-labelledby="student-label">
 					<g:formatNumber number="${invoiceInstance.totalFees}" type="currency" currencyCode="USD"/>
 					</span>
 				</li>
 
 				<g:if test="${invoiceInstance?.paymentDate}">
 				<li class="fieldcontain">
-					<span id="paymentDate-label" class="property-label">
+					<span id="paymentDate-label" style="width:50%" class="property-label">
 						<g:message code="invoice.paymentDate.label" default="Payment Date"/>
 					</span>
 					
-					<span class="property-value" aria-labelledby="paymentDate-label">
+					<span class="property-value" style="margin-left:60%" aria-labelledby="paymentDate-label">
 						<g:formatDate format="dd-MMM-yyyy" date="${invoiceInstance?.paymentDate}"/>
 					</span>
 				</li>
@@ -69,46 +69,55 @@ Start of the page elements
 			
 				<g:if test="${invoiceInstance?.checkNo}">
 				<li class="fieldcontain">
-					<span id="checkNo-label" class="property-label"><g:message code="invoice.checkNo.label" default="Check No" /></span>
+					<span id="checkNo-label" style="width:50%" class="property-label"><g:message code="invoice.checkNo.label" default="Check No" /></span>
 					
-						<span class="property-value" aria-labelledby="checkNo-label"><g:fieldValue bean="${invoiceInstance}" field="checkNo"/></span>
-					
+					<span class="property-value"style="margin-left:60%" aria-labelledby="checkNo-label">
+						<g:fieldValue bean="${invoiceInstance}" field="checkNo"/>
+					</span>
 				</li>
 				</g:if>
 			
 				<g:if test="${invoiceInstance?.checkAmt}">
 				<li class="fieldcontain">
-					<span id="checkAmt-label" class="property-label"><g:message code="invoice.checkAmt.label" default="Check Amt" /></span>
+					<span id="checkAmt-label" style="width:50%" class="property-label"><g:message code="invoice.checkAmt.label" default="Check Amount" /></span>
 					
-						<span class="property-value" aria-labelledby="checkAmt-label"><g:fieldValue bean="${invoiceInstance}" field="checkAmt"/></span>
-					
+					<span class="property-value" style="margin-left:60%" aria-labelledby="checkAmt-label">
+						<g:fieldValue bean="${invoiceInstance}" field="checkAmt"/>
+					</span>
 				</li>
 				</g:if>
 			
 				<g:if test="${invoiceInstance?.imageFileName}">
 				<li class="fieldcontain">
-					<span id="imageFileName-label" class="property-label"><g:message code="invoice.imageFileName.label" default="Image File Name" /></span>
+					<span id="imageFileName-label" style="width:50%" class="property-label"><g:message code="invoice.imageFileName.label" default="Image File Name" /></span>
 					
-						<span class="property-value" aria-labelledby="imageFileName-label"><g:fieldValue bean="${invoiceInstance}" field="imageFileName"/></span>
-					
+					<span class="property-value" style="margin-left:60%" aria-labelledby="imageFileName-label">
+						<g:fieldValue bean="${invoiceInstance}" field="imageFileName"/>
+					</span>
 				</li>
 				</g:if>
 			
 				<g:if test="${invoiceInstance?.invoiceAmt}">
 				<li class="fieldcontain">
-					<span id="invoiceAmt-label" class="property-label"><g:message code="invoice.invoiceAmt.label" default="Invoice Amt" /></span>
+					<span id="invoiceAmt-label" style="width:50%" class="property-label">
+						<g:message code="invoice.invoiceAmt.label" default="Invoice Amount"/>
+					</span>
 					
-						<span class="property-value" aria-labelledby="invoiceAmt-label"><g:fieldValue bean="${invoiceInstance}" field="invoiceAmt"/></span>
-					
+					<span class="property-value" style="margin-left:60%" aria-labelledby="invoiceAmt-label">
+						<g:fieldValue bean="${invoiceInstance}" field="invoiceAmt"/>
+					</span>
 				</li>
 				</g:if>
 			
 				<g:if test="${invoiceInstance?.isPaid}">
 				<li class="fieldcontain">
-					<span id="isPaid-label" class="property-label"><g:message code="invoice.isPaid.label" default="Is Paid" /></span>
+					<span id="isPaid-lab6l" style="width:50%" class="property-label">
+						<g:message code="invoice.isPaid.label" default="Is Paid"/>
+					</span>
 					
-						<span class="property-value" aria-labelledby="isPaid-label"><g:formatBoolean boolean="${invoiceInstance?.isPaid}" /></span>
-					
+					<span class="property-value" style="margin-left:60%" aria-labelledby="isPaid-label">
+						<g:formatBoolean boolean="${invoiceInstance?.isPaid}"/>
+					</span>
 				</li>
 				</g:if>
 			</ol>
@@ -117,14 +126,116 @@ Start of the page elements
 			<div style="float:left;width:45%;border:1px solid grey;">
 			<ol class="property-list invoice">
 				<g:if test="${invoiceInstance?.student}">
-				<g:set var="student" value="${invoiceInstance.student}"/>
+					<g:set var="student" value="${invoiceInstance.student}"/>
+					<li class="fieldcontain">
+						<span id="student-label" style="float:left" class="property-label">
+							<g:message code="invoice.student.label" default="Student"/>
+						</span>
+						
+						<span class="property-value" aria-labelledby="student-label">
+						<g:link controller="student" action="show" id="${student?.id}">${student?.encodeAsHTML()}</g:link>
+						</span>
+					</li>
+
+					<g:if test="${student?.parent}">
+						<g:set var="parent" value="${student.parent}"/>
+						<li class="fieldcontain">
+							<span id="parent-label" style="float:left" class="property-label">
+								<g:message code="student.parent.label" default="Parent"/>
+							</span>
+							
+							<span class="property-value" aria-labelledby="parent-label">
+							<g:link controller="parent" action="show" id="${parent?.id}">${parent?.encodeAsHTML()}</g:link>
+							</span>
+						</li>
+
+
+
+				<g:if test="${parent?.addressLine1}">
 				<li class="fieldcontain">
-					<span id="student-label" style="float:left" class="property-label"><g:message code="invoice.student.label" default="Student" /></span>
+					<span id="addressLine1-label" class="property-label"><g:message code="parent.addressLine1.label" default="Address Line1" /></span>
 					
-					<span class="property-value" aria-labelledby="student-label"><g:link controller="student" action="show" id="${student?.id}">${student?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="addressLine1-label"><g:fieldValue bean="${parent}" field="addressLine1"/></span>
 					
 				</li>
 				</g:if>
+			
+				<g:if test="${parent?.city}">
+				<li class="fieldcontain">
+					<span id="city-label" class="property-label"><g:message code="parent.city.label" default="City" /></span>
+					
+						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${parent}" field="city"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${parent?.email}">
+				<li class="fieldcontain">
+					<span id="email-label" class="property-label"><g:message code="parent.email.label" default="Email" /></span>
+					
+						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${parent}" field="email"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${parent?.phoneNo}">
+				<li class="fieldcontain">
+					<span id="phoneNo-label" class="property-label"><g:message code="parent.phoneNo.label" default="Phone No" /></span>
+					
+					<span class="property-value" aria-labelledby="phoneNo-label">
+						<g:formatNumber number="${parent?.phoneNo}" format="######" />
+						<!--
+							<g:fieldValue bean="${parent}" field="phoneNo"/>
+						-->
+						
+					</span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${parent?.stateCode}">
+				<li class="fieldcontain">
+					<span id="stateCode-label" class="property-label"><g:message code="parent.stateCode.label" default="State Code" /></span>
+					
+						<span class="property-value" aria-labelledby="stateCode-label"><g:fieldValue bean="${parent}" field="stateCode"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${parent?.zip}">
+				<li class="fieldcontain">
+					<span id="zip-label" class="property-label"><g:message code="parent.zip.label" default="Zip" /></span>
+					
+						<span class="property-value" aria-labelledby="zip-label"><g:fieldValue bean="${parent}" field="zip"/></span>
+					
+				</li>
+				</g:if>
+
+
+
+
+
+
+
+
+
+					</g:if>
+
+					<g:if test="${student?.secondParent}">
+						<g:set var="parent" value="${student.secondParent}"/>
+						<li class="fieldcontain">
+							<span id="parent-label" style="float:left" class="property-label">
+								<g:message code="student.parent.label" default="Parent"/>
+							</span>
+							
+							<span class="property-value" aria-labelledby="parent-label">
+							<g:link controller="parent" action="show" id="${parent?.id}">${parent?.encodeAsHTML()}</g:link>
+							</span>
+						</li>
+					</g:if>
+
+				</g:if>
+
 			</ol>
 			</div>
 
