@@ -26,7 +26,7 @@
 <!--
 Start of the page elements
 -->
-			<div style="float:left;width:45%;border:1px solid grey;">
+			<div style="float:left;height:200px;width:35%;border:1px solid grey;">
 			<ol class="property-list invoice">
 				<li class="fieldcontain">
 					<span id="invoice-No" style="width:50%" class="property-label">Invoice No</span>
@@ -123,112 +123,114 @@ Start of the page elements
 			</ol>
 			</div>
 
-			<div style="float:left;width:45%;border:1px solid grey;">
+			<div style="float:left;height:200px;width:55%;border:1px solid grey;">
 			<ol class="property-list invoice">
 				<g:if test="${invoiceInstance?.student}">
 					<g:set var="student" value="${invoiceInstance.student}"/>
+
 					<li class="fieldcontain">
-						<span id="student-label" style="float:left" class="property-label">
+						<span id="student-label" style="width:50%" class="property-label">
 							<g:message code="invoice.student.label" default="Student"/>
 						</span>
 						
-						<span class="property-value" aria-labelledby="student-label">
-						<g:link controller="student" action="show" id="${student?.id}">${student?.encodeAsHTML()}</g:link>
+						<span class="property-value" style="margin-left:60%" aria-labelledby="student-label">
+							<g:link controller="student" action="show" id="${student?.id}">${student?.encodeAsHTML()}</g:link>
 						</span>
 					</li>
 
 					<g:if test="${student?.parent}">
 						<g:set var="parent" value="${student.parent}"/>
+
 						<li class="fieldcontain">
-							<span id="parent-label" style="float:left" class="property-label">
+							<span id="parent-label" style="width:50%" class="property-label">
 								<g:message code="student.parent.label" default="Parent"/>
 							</span>
 							
-							<span class="property-value" aria-labelledby="parent-label">
-							<g:link controller="parent" action="show" id="${parent?.id}">${parent?.encodeAsHTML()}</g:link>
+							<span class="property-value" style="margin-left:60%" aria-labelledby="parent-label">
+								<g:link controller="parent" action="show" id="${parent?.id}">${parent?.encodeAsHTML()}</g:link>
 							</span>
 						</li>
 
-
-
-				<g:if test="${parent?.addressLine1}">
-				<li class="fieldcontain">
-					<span id="addressLine1-label" class="property-label"><g:message code="parent.addressLine1.label" default="Address Line1" /></span>
-					
-						<span class="property-value" aria-labelledby="addressLine1-label"><g:fieldValue bean="${parent}" field="addressLine1"/></span>
-					
-				</li>
-				</g:if>
+						<g:if test="${parent?.addressLine1}">
+						<li class="fieldcontain">
+							<span id="addressLine1-label" style="width:50%" class="property-label">
+								<g:message code="parent.addressLine1.label" default="Address Line1"/>
+							</span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="addressLine1-label">
+								<g:fieldValue bean="${parent}" field="addressLine1"/>
+							</span>
+						</li>
+						</g:if>
 			
-				<g:if test="${parent?.city}">
-				<li class="fieldcontain">
-					<span id="city-label" class="property-label"><g:message code="parent.city.label" default="City" /></span>
-					
-						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${parent}" field="city"/></span>
-					
-				</li>
-				</g:if>
+						<g:if test="${parent?.city}">
+						<li class="fieldcontain">
+							<span id="city-label" style="width:50%" class="property-label"><g:message code="parent.city.label" default="City" /></span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="city-label">
+								<g:fieldValue bean="${parent}" field="city"/>
+							</span>
+						</li>
+						</g:if>
 			
-				<g:if test="${parent?.email}">
-				<li class="fieldcontain">
-					<span id="email-label" class="property-label"><g:message code="parent.email.label" default="Email" /></span>
+						<g:if test="${parent?.email}">
+						<li class="fieldcontain">
+							<span id="email-label" style="width:50%" class="property-label">
+								<g:message code="parent.email.label" default="Email"/>
+							</span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="email-label">
+								<g:fieldValue bean="${parent}" field="email"/>
+							</span>
+						</li>
+						</g:if>
 					
-						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${parent}" field="email"/></span>
-					
-				</li>
-				</g:if>
+						<g:if test="${parent?.phoneNo}">
+						<li class="fieldcontain">
+							<span id="phoneNo-label" style="width:50%" class="property-label">
+								<g:message code="parent.phoneNo.label" default="Phone No"/>
+							</span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="phoneNo-label">
+								<g:formatNumber number="${parent?.phoneNo}" format="######" />
+								<!--
+									<g:fieldValue bean="${parent}" field="phoneNo"/>
+								-->
+							</span>
+						</li>
+						</g:if>
 			
-				<g:if test="${parent?.phoneNo}">
-				<li class="fieldcontain">
-					<span id="phoneNo-label" class="property-label"><g:message code="parent.phoneNo.label" default="Phone No" /></span>
-					
-					<span class="property-value" aria-labelledby="phoneNo-label">
-						<g:formatNumber number="${parent?.phoneNo}" format="######" />
-						<!--
-							<g:fieldValue bean="${parent}" field="phoneNo"/>
-						-->
-						
-					</span>
-					
-				</li>
-				</g:if>
+						<g:if test="${parent?.stateCode}">
+						<li class="fieldcontain">
+							<span id="stateCode-label" style="width:50%" class="property-label"><g:message code="parent.stateCode.label" default="State" /></span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="stateCode-label">
+								<g:fieldValue bean="${parent}" field="stateCode"/>
+							</span>
+						</li>
+						</g:if>
 			
-				<g:if test="${parent?.stateCode}">
-				<li class="fieldcontain">
-					<span id="stateCode-label" class="property-label"><g:message code="parent.stateCode.label" default="State Code" /></span>
-					
-						<span class="property-value" aria-labelledby="stateCode-label"><g:fieldValue bean="${parent}" field="stateCode"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${parent?.zip}">
-				<li class="fieldcontain">
-					<span id="zip-label" class="property-label"><g:message code="parent.zip.label" default="Zip" /></span>
-					
-						<span class="property-value" aria-labelledby="zip-label"><g:fieldValue bean="${parent}" field="zip"/></span>
-					
-				</li>
-				</g:if>
-
-
-
-
-
-
-
-
-
+						<g:if test="${parent?.zip}">
+						<li class="fieldcontain">
+							<span id="zip-label" style="width:50%" class="property-label">
+								<g:message code="parent.zip.label" default="Zip"/>
+							</span>
+							
+							<span class="property-value" style="margin-left:60%" aria-labelledby="zip-label">
+								<g:fieldValue bean="${parent}" field="zip"/>
+							</span>
+						</li>
+						</g:if>
 					</g:if>
 
 					<g:if test="${student?.secondParent}">
 						<g:set var="parent" value="${student.secondParent}"/>
 						<li class="fieldcontain">
-							<span id="parent-label" style="float:left" class="property-label">
+							<span id="parent-label" style="width:50%" class="property-label">
 								<g:message code="student.parent.label" default="Parent"/>
 							</span>
 							
-							<span class="property-value" aria-labelledby="parent-label">
+							<span class="property-value" style="margin-left:60%" aria-labelledby="parent-label">
 							<g:link controller="parent" action="show" id="${parent?.id}">${parent?.encodeAsHTML()}</g:link>
 							</span>
 						</li>
