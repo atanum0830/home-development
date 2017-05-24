@@ -37,4 +37,23 @@ class Schedule {
 
 		date
 	}
+
+	public Float getClassFee() {
+		float classFee = fee;
+		if (rate.isHourly()) {
+			float hours = (duration/60.0);
+			classFee = hours * fee;
+		} else if (rate.isDaily()) {
+			//float hours = (duration/60.0);
+			classFee = duration * fee;
+		} else if (rate.isWeekly()) {
+			//float hours = (duration/60.0);
+			classFee = duration * fee;
+		} else if (rate.isMonthly()) {
+			//float hours = (duration/60.0);
+			classFee = duration * fee;
+		}
+
+		classFee
+	}
 }

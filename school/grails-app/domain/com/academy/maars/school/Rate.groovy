@@ -18,4 +18,19 @@ class Rate {
     	rateCode + '(' + name + ')';
 	}
 
+    public Boolean isHourly() {
+        rateCode == "HOURLY"
+    }
+
+    public Boolean isDaily() {
+        rateCode == "DAILY"
+    }
+
+    public Boolean isWeekly() {
+        rateCode == "WEEKLY"
+    }
+
+    public Boolean isMonthly() {
+        rateCode == "MONTHLY"
+    }
 }

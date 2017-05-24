@@ -34,7 +34,7 @@
 			<g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/>
 		</td>
 		<td style="white-space:nowrap">
-			<g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/>
+			<g:formatNumber number="${schedule.classFee}" type="currency" currencyCode="USD"/>
 		</td>
 		</tr>
 	</g:each>

@@ -31,8 +31,14 @@ class Invoice {
     }
 
     public Float getTotalFees() {
-        float amount = schedules.sum {it.fee}
-        amount = amount + miscItems.sum {it.amount}
+        float amount =0.0;
+        if (this.schedules) {
+            amount = amount + schedules.sum {it.classFee}
+        }
+
+        if (this.miscItems) {
+            amount = amount + miscItems.sum {it.amount}
+        }
         amount;
     }
 
