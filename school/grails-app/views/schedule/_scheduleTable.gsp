@@ -9,7 +9,7 @@
 		<th style="width:10%">Start</th>
 		<th style="width:10%">Close</th>
 		<g:sortableColumn property="duration" style="width:5%"
-				title="${message(code: 'schedule.duration.label', default: 'Mins')}" />
+				title="${message(code: 'schedule.duration.label', default: 'Time')}" />
 		<th style="width:5%">Type</th>
 		<th style="width:5%">Rate</th>
 		<th style="width:5%">Fee</th>
@@ -26,9 +26,21 @@
 		</td>
 		<td style="white-space:nowrap"><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
 		<td style="white-space:nowrap">${schedule.subject}</td>
-		<td style="white-space:nowrap"><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></td>
-		<td style="white-space:nowrap"><g:formatDate format="hh:mm a" date="${schedule.endTime}"/></td>
-		<td style="white-space:nowrap">${schedule.duration}</td>
+		<td style="white-space:nowrap">
+			<g:if test="${schedule.isHourly()}">
+			<g:formatDate format="hh:mm a" date="${schedule.classDate}"/>
+			</g:if>
+		</td>
+		<td style="white-space:nowrap">
+			<g:if test="${schedule.isHourly()}">
+			<g:formatDate format="hh:mm a" date="${schedule.endTime}"/>
+			</g:if>
+		</td>
+		
+		<td style="white-space:nowrap">
+			<g:if test="${schedule.isHourly()}">
+			<g:formatNumber number="${schedule.duration}" maxFractionDigits="0"/> mins</g:if>
+		</td>
 		<td style="white-space:nowrap">${schedule.rate.rateCode}</td>
 		<td style="white-space:nowrap">
 			<g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/>
@@ -40,5 +52,3 @@
 	</g:each>
 </tbody>
 </table>
-
-

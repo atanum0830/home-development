@@ -40,20 +40,36 @@ class Schedule {
 
 	public Float getClassFee() {
 		float classFee = fee;
-		if (rate.isHourly()) {
+		if (isHourly()) {
 			float hours = (duration/60.0);
 			classFee = hours * fee;
-		} else if (rate.isDaily()) {
+		} else if (isDaily()) {
 			//float hours = (duration/60.0);
 			classFee = duration * fee;
-		} else if (rate.isWeekly()) {
+		} else if (isWeekly()) {
 			//float hours = (duration/60.0);
 			classFee = duration * fee;
-		} else if (rate.isMonthly()) {
+		} else if (isMonthly()) {
 			//float hours = (duration/60.0);
 			classFee = duration * fee;
 		}
 
 		classFee
 	}
+
+    public Boolean isHourly() {
+        rate.isHourly()
+    }
+
+    public Boolean isDaily() {
+        rate.isDaily()
+    }
+
+    public Boolean isWeekly() {
+        rate.isWeekly()
+    }
+
+    public Boolean isMonthly() {
+        rate.isMonthly()
+    }
 }
