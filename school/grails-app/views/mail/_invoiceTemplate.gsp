@@ -178,11 +178,11 @@
     <table style='width:100%;margin-top:10px'>
         <thead style='margin:0;padding:0;'>
             <tr style='margin:0;padding:0;height:30px;background-color:black;color:white'>
-                <td style='width:12%'>Schedule ID</td>
+                <td style='width:12%'></td>
                 <td style='width:12%'>Class Date</td>
                 <td style='width:12%'>Class Time</td>
                 <td style='width:11%'>Duration</td>
-                <td style='width:23%'>Subject</td>
+                <td style='width:23%'>Description</td>
                 <td style='width:10%'>Type</td>
                 <td style='width:10%'>Rate</td>
                 <td style='width:10%'>Class Fee</td>
@@ -194,12 +194,12 @@
                 <tr style="${(count % 2) == 0 ? 'color:#00cc99' : 'color:#00cc99;background-color:#e0ebeb;'}">
                     <td>${schedule.id}</td>
                     <td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
-                    <td><g:formatDate format="HH:mm" date="${schedule.classDate}"/></td>
-                    <td><g:formatNumber number="${schedule.duration}" type="number" maxFractionDigits="0"/> mins</td>
+                    <td><g:if test="${schedule.isHourly()}"><g:formatDate format="HH:mm a" date="${schedule.classDate}"/></g:if></td>
+                    <td><g:if test="${schedule.isHourly()}"><g:formatNumber number="${schedule.duration}" type="number" maxFractionDigits="0"/> mins</g:if></td>
                     <td>${schedule.subject.name}</td>
                     <td>${schedule.rate.rateCode}</td>
                     <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
-                    <td><g:formatNumber number="${schedule.fee}" type="currency" currencyCode="USD"/></td>
+                    <td><g:formatNumber number="${schedule.classFee}" type="currency" currencyCode="USD"/></td>
                 </tr>
             </g:each>
 

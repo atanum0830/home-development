@@ -60,6 +60,12 @@ class InvoiceController {
     }
 
     def show(Invoice invoiceInstance) {
+        def schedules = invoiceInstance.schedules.sort { it.id }
+        def miscItems = invoiceInstance.miscItems.sort { it.id }
+        //invoiceInstance.schedules.sort { it.id }
+        //invoiceInstance.miscItems.sort { it.id }
+        invoiceInstance.schedules = schedules
+        invoiceInstance.miscItems = miscItems
         respond invoiceInstance
     }
 
