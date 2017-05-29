@@ -32,6 +32,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${rateInstance?.type}">
+				<li class="fieldcontain">
+					<span id="type-label" class="property-label"><g:message code="rate.type.label" default="Type" /></span>
+					
+						<span class="property-value" aria-labelledby="type-label"><g:fieldValue bean="${rateInstance}" field="type"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${rateInstance?.rateCode}">
 				<li class="fieldcontain">
 					<span id="rateCode-label" class="property-label"><g:message code="rate.rateCode.label" default="Rate Code" /></span>

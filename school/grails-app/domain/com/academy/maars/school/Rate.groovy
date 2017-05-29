@@ -2,6 +2,7 @@ package com.academy.maars.school
 
 class Rate {
 	String rateCode;
+    String type;
 	String name;
 
     static mapping = {
@@ -12,6 +13,7 @@ class Rate {
 
 	static constraints = {
     	name blank:false, nullable:false
+        type inList:['H','F','T']   // H:Halfday, F:Fullday, T:Tuition 
     }
 
     public String toString() {

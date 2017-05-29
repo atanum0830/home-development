@@ -7,6 +7,11 @@ class MiscItem {
 
 	static belongsTo = [invoice: Invoice]
 
+    static mapping = {
+    	table "misc_items"
+    	id column: "misc_item_id"
+    }
+
     static constraints = {
     }
 }

@@ -7,7 +7,7 @@
 		<g:message code="schedule.classDate.label" default="Class Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="classDate" precision="day"  value="${scheduleInstance?.classDate}"  />
+	<g:datePicker name="classDate" precision="minute"  value="${scheduleInstance?.classDate}" />
 
 </div>
 

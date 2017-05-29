@@ -11,6 +11,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: rateInstance, field: 'type', 'error')} required">
+	<label for="type">
+		<g:message code="rate.type.label" default="Type" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select name="type" from="${rateInstance.constraints.type.inList}" required="" value="${rateInstance?.type}" valueMessagePrefix="rate.type"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: rateInstance, field: 'rateCode', 'error')} required">
 	<label for="rateCode">
 		<g:message code="rate.rateCode.label" default="Rate Code" />
