@@ -46,6 +46,34 @@ class ScheduleController {
         }
     }
 
+    @Transactional
+    def duplicate(Schedule scheduleInstance) {
+        if (scheduleInstance == null) {
+            notFound()
+            return
+        }
+
+        if (scheduleInstance.hasErrors()) {
+            respond scheduleInstance.errors, view:'create'
+            return
+        }
+
+        def dupInstance = new Schedule(scheduleInstance.properties)
+        dupInstance.id = null
+        respond dupInstance
+        /*
+        scheduleInstance.save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'schedule.label', default: 'Schedule'), dupInstance.id])
+                redirect scheduleInstance
+            }
+            '*' { respond scheduleInstance, [status: CREATED] }
+        }
+        */
+    }
+
     def edit(Schedule scheduleInstance) {
         respond scheduleInstance
     }
