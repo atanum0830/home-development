@@ -27,7 +27,9 @@
 				<li class="fieldcontain">
 					<span id="classDate-label" class="property-label"><g:message code="schedule.classDate.label" default="Class Date" /></span>
 					
-						<span class="property-value" aria-labelledby="classDate-label"><g:formatDate date="${scheduleInstance?.classDate}" /></span>
+						<span class="property-value" aria-labelledby="classDate-label">
+						<g:formatDate format="EEE dd-MMM-yyyy hh:mm a" date="${scheduleInstance?.classDate}" />
+						</span>
 					
 				</li>
 				</g:if>

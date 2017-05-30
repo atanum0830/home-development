@@ -23,19 +23,16 @@
 			<table>
 			<thead>
 					<tr>
-					
 						<g:sortableColumn property="firstName" title="${message(code: 'student.firstName.label', default: 'First Name')}" />
 					
 						<g:sortableColumn property="lastName" title="${message(code: 'student.lastName.label', default: 'Last Name')}" />
 					
+						<g:sortableColumn property="preKinder" title="${message(code: 'student.preKinder.label', default: 'Pre-K')}" />
+					
 						<g:sortableColumn property="gender" title="${message(code: 'student.gender.label', default: 'Gender')}" />
 					
-						<th><g:message code="student.secondParent.label" default="Second Parent" /></th>
-					
-						<g:sortableColumn property="prevSchool" title="${message(code: 'student.prevSchool.label', default: 'Prev School')}" />
-					
-						<g:sortableColumn property="feedback" title="${message(code: 'student.feedback.label', default: 'Feedback')}" />
-					
+						<th><g:message code="student.parent.label" default="Parent 1" /></th>
+						<th><g:message code="student.secondParent.label" default="Parent 2" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,17 +40,11 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${studentInstance.id}">${fieldValue(bean: studentInstance, field: "firstName")}</g:link></td>
-					
 						<td>${fieldValue(bean: studentInstance, field: "lastName")}</td>
-					
+						<td><g:formatBoolean boolean="${studentInstance.preKinder}" true="YES" false="NO"/></td>
 						<td>${fieldValue(bean: studentInstance, field: "gender")}</td>
-					
+						<td>${fieldValue(bean: studentInstance, field: "parent")}</td>
 						<td>${fieldValue(bean: studentInstance, field: "secondParent")}</td>
-					
-						<td>${fieldValue(bean: studentInstance, field: "prevSchool")}</td>
-					
-						<td>${fieldValue(bean: studentInstance, field: "feedback")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>

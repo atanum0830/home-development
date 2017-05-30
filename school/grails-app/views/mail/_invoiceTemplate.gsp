@@ -194,7 +194,7 @@
                 <tr style="${(count % 2) == 0 ? 'color:#00cc99' : 'color:#00cc99;background-color:#e0ebeb;'}">
                     <td>${schedule.id}</td>
                     <td><g:formatDate format="dd-MMM-yyyy" date="${schedule.classDate}"/></td>
-                    <td><g:if test="${schedule.isHourly()}"><g:formatDate format="HH:mm a" date="${schedule.classDate}"/></g:if></td>
+                    <td><g:if test="${schedule.isHourly()}"><g:formatDate format="hh:mm a" date="${schedule.classDate}"/></g:if></td>
                     <td><g:if test="${schedule.isHourly()}"><g:formatNumber number="${schedule.duration}" type="number" maxFractionDigits="0"/> mins</g:if></td>
                     <td>${schedule.subject.name}</td>
                     <td>${schedule.rate.rateCode}</td>
