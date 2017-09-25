@@ -4,6 +4,7 @@ package com.academy.maars.school
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
 
 @Transactional(readOnly = true)
 class InvoiceController {
@@ -58,6 +59,41 @@ class InvoiceController {
         params.max = Math.min(max ?: 10, 100)
         respond Invoice.list(params), model:[invoiceInstanceCount: Invoice.count()]
     }
+
+    def monthX(Integer max) {
+        def startDate = new Date();
+        def endDate = new Date();
+        startDate.set(date:1, hourOfDay:0, minute:0, second:0);
+        use (TimeCategory) {
+            endDate = startDate + 1.month;
+            startDate = startDate - 1;
+        }
+        
+        params.max = Math.min(max ?: 10, 100)
+        //def resuts -  = Invoice.findAllByInvoiceDateBetween(startDate, endDate, params);
+        //def resuts = Invoice.findAllByInvoiceDateGreaterThanOrEqual(startDate, params);
+        def resuts = Invoice.findAllByInvoiceDateGreaterThan(startDate, params)
+
+        //respond Invoice.list(params), model:[invoiceInstanceCount: Invoice.count()]
+        respond resuts, model:[invoiceInstanceCount: Invoice.count()]
+    }
+
+
+    def month(Integer max) {
+        def startDate = findStartDate();
+        def endDate = findEndDate();
+        
+        params.max = Math.min(max ?: 10, 100)
+        params.sort = 'invoiceDate';
+
+        def resuts = Invoice.findAllByInvoiceDateBetween(startDate, endDate, params);
+        def count = Invoice.countByInvoiceDateBetween(startDate, endDate, params);        
+
+        //respond resuts, model:[invoiceInstanceCount: Invoice.count()]
+        respond resuts, model:[invoiceInstanceCount: count]
+    }
+
+
 
     def show(Invoice invoiceInstance) {
         def schedules = invoiceInstance.schedules.sort { it.id }
@@ -151,4 +187,30 @@ class InvoiceController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    protected Date findStartDate() {
+        def startDate = new Date();
+        startDate.set(date:1, hourOfDay:0, minute:0, second:0);
+        use (TimeCategory) {
+            startDate = startDate - 1;
+        }
+
+        startDate.set(hourOfDay:23, minute:59, second:59);
+
+        startDate
+    }
+
+    protected Date findEndDate() {
+        def endDate = new Date();
+        endDate.set(date:1, hourOfDay:0, minute:0, second:0);
+        use (TimeCategory) {
+            endDate = endDate + 1.month;
+            endDate = endDate - 1;
+        }
+
+        endDate.set(hourOfDay:23, minute:59, second:59);
+
+        endDate
+    }
+
 }
