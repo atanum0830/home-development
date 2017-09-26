@@ -60,40 +60,36 @@ class InvoiceController {
         respond Invoice.list(params), model:[invoiceInstanceCount: Invoice.count()]
     }
 
-    def monthX(Integer max) {
-        def startDate = new Date();
-        def endDate = new Date();
-        startDate.set(date:1, hourOfDay:0, minute:0, second:0);
-        use (TimeCategory) {
-            endDate = startDate + 1.month;
-            startDate = startDate - 1;
-        }
-        
+    def unpaid(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        //def resuts -  = Invoice.findAllByInvoiceDateBetween(startDate, endDate, params);
-        //def resuts = Invoice.findAllByInvoiceDateGreaterThanOrEqual(startDate, params);
-        def resuts = Invoice.findAllByInvoiceDateGreaterThan(startDate, params)
+        params.sort = 'id';
 
-        //respond Invoice.list(params), model:[invoiceInstanceCount: Invoice.count()]
-        respond resuts, model:[invoiceInstanceCount: Invoice.count()]
+        def resuts = Invoice.findAllByIsPaid(false, params);
+        def count = Invoice.countByIsPaid(false, params);        
+
+        respond resuts, model:[invoiceInstanceCount: count], view:'index'
     }
 
+    def curMonth(Integer max) {
+        def startDate = DateUtils.findCurMonthStartDate();
+        def endDate = DateUtils.findCurMonthEndDate();
 
-    def month(Integer max) {
-        def startDate = findStartDate();
-        def endDate = findEndDate();
-        
-        params.max = Math.min(max ?: 10, 100)
-        params.sort = 'invoiceDate';
-
-        def resuts = Invoice.findAllByInvoiceDateBetween(startDate, endDate, params);
-        def count = Invoice.countByInvoiceDateBetween(startDate, endDate, params);        
-
-        //respond resuts, model:[invoiceInstanceCount: Invoice.count()]
-        respond resuts, model:[invoiceInstanceCount: count]
+        handleMonth(max, startDate, endDate);
     }
 
+    def nextMonth(Integer max) {
+        def startDate = DateUtils.findNextMonthStartDate();
+        def endDate = DateUtils.findNextMonthEndDate();
+        
+        handleMonth(max, startDate, endDate);
+    }
 
+    def prevMonth(Integer max) {
+        def startDate = DateUtils.findPrevMonthStartDate();
+        def endDate = DateUtils.findPrevMonthEndDate();
+        
+        handleMonth(max, startDate, endDate);
+    }
 
     def show(Invoice invoiceInstance) {
         def schedules = invoiceInstance.schedules.sort { it.id }
@@ -188,29 +184,14 @@ class InvoiceController {
         }
     }
 
-    protected Date findStartDate() {
-        def startDate = new Date();
-        startDate.set(date:1, hourOfDay:0, minute:0, second:0);
-        use (TimeCategory) {
-            startDate = startDate - 1;
-        }
+    protected void handleMonth(Integer max, Date startDate, Date endDate) {
+        params.max = Math.min(max ?: 10, 100)
+        params.sort = 'id';
 
-        startDate.set(hourOfDay:23, minute:59, second:59);
+        def resuts = Invoice.findAllByInvoiceDateBetween(startDate, endDate, params);
+        def count = Invoice.countByInvoiceDateBetween(startDate, endDate, params);        
 
-        startDate
-    }
-
-    protected Date findEndDate() {
-        def endDate = new Date();
-        endDate.set(date:1, hourOfDay:0, minute:0, second:0);
-        use (TimeCategory) {
-            endDate = endDate + 1.month;
-            endDate = endDate - 1;
-        }
-
-        endDate.set(hourOfDay:23, minute:59, second:59);
-
-        endDate
+        respond resuts, model:[invoiceInstanceCount: count], view:'index'
     }
 
 }
